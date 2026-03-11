@@ -1,0 +1,89 @@
+---
+import AppLayout from "../../../layouts/AppLayout.astro";
+import { config } from "../../../projects/lenders-portal/config";
+---
+
+<AppLayout config={config} title="Upload Advice" showNavArrows>
+  <div class="mb-6">
+    <div class="text-sm font-semibold text-gray-500">Upload Advice Summary</div>
+    <div class="text-sm text-gray-400 mt-1">
+      Summary of the uploaded data processing results
+    </div>
+  </div>
+
+  <!-- Advice Summary -->
+  <div class="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div>
+        <div class="text-xs text-gray-400 mb-1">File Name</div>
+        <div class="text-sm font-medium text-gray-900">
+          10118-20120130-20120205-1.1-CONC-12.xlsx
+        </div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-400 mb-1">Date Uploaded</div>
+        <div class="text-sm font-medium text-gray-900">
+          18th Oct, 2023 • 10:23 AM
+        </div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-400 mb-1">Upload Source</div>
+        <div class="text-sm font-medium text-gray-900">FTP</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-400 mb-1">Status</div>
+        <span
+          class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium text-emerald-600 bg-emerald-50 border border-emerald-200"
+          >Completed</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6">
+    <div class="bg-white rounded-xl border border-gray-200 p-5 text-center">
+      <div class="text-2xl font-bold text-gray-900">1,245</div>
+      <div class="text-xs text-gray-500 mt-1">Total Records</div>
+    </div>
+    <div class="bg-white rounded-xl border border-gray-200 p-5 text-center">
+      <div class="text-2xl font-bold text-emerald-600">1,200</div>
+      <div class="text-xs text-gray-500 mt-1">Accepted</div>
+    </div>
+    <div class="bg-white rounded-xl border border-gray-200 p-5 text-center">
+      <div class="text-2xl font-bold text-red-600">30</div>
+      <div class="text-xs text-gray-500 mt-1">Rejected</div>
+    </div>
+    <div class="bg-white rounded-xl border border-gray-200 p-5 text-center">
+      <div class="text-2xl font-bold text-amber-600">15</div>
+      <div class="text-xs text-gray-500 mt-1">Duplicates</div>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <button
+      class="inline-flex items-center gap-2 bg-teal-500 text-white rounded-lg px-5 py-2.5 text-sm font-semibold hover:opacity-90 transition-opacity border-none cursor-pointer"
+    >
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+        <polyline points="7 10 12 15 17 10"></polyline>
+        <line x1="12" y1="15" x2="12" y2="3"></line>
+      </svg>
+      Download Advice
+    </button>
+    <a
+      href="/lendscore/lenders-portal/bank-uploaded"
+      class="inline-flex items-center justify-center border border-gray-200 rounded-lg px-6 py-2.5 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition no-underline"
+      >Back to Uploads</a
+    >
+  </div>
+</AppLayout>

@@ -1,0 +1,72 @@
+---
+import AppLayout from "../../../layouts/AppLayout.astro";
+import { config } from "../../../projects/lenders-portal/config";
+---
+
+<AppLayout config={config} title="Credit Report - Individual" showNavArrows>
+  <div class="max-w-2xl">
+    <div class="mb-6">
+      <div class="text-sm font-semibold text-gray-500">
+        Find Credit Report For A Person
+      </div>
+      <div class="text-sm text-gray-400 mt-1">
+        Search by phone number or ID to generate a credit report
+      </div>
+    </div>
+
+    <div class="bg-white rounded-md border border-gray-200 p-6">
+      <form class="flex flex-col gap-5">
+        <div class="flex flex-col gap-1.5">
+          <label class="text-sm font-medium text-gray-700">Search By</label>
+          <select
+            class="border border-gray-200 rounded-lg py-2.5 px-4 text-sm text-gray-700 bg-white outline-none focus:border-teal-500 transition-colors"
+          >
+            <option value="phone">Phone Number</option>
+            <option value="ghanacard">Ghana Card</option>
+            <option value="passport">Passport</option>
+          </select>
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="text-sm font-medium text-gray-700"
+            >Phone Number / ID Number</label
+          >
+          <input
+            type="text"
+            class="border border-gray-200 rounded-lg py-2.5 px-4 text-sm text-gray-700 bg-white outline-none focus:border-teal-500 transition-colors"
+            placeholder="Enter phone number or ID"
+          />
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="text-sm font-medium text-gray-700">Report Type</label>
+          <select
+            class="border border-gray-200 rounded-lg py-2.5 px-4 text-sm text-gray-700 bg-white outline-none focus:border-teal-500 transition-colors"
+          >
+            <option value="">Select Report Type</option>
+            <option value="comprehensive"
+              >Consumer Comprehensive Credit Report</option
+            >
+            <option value="profile">Consumer Profile Detail</option>
+            <option value="score">Credit Score Check Report</option>
+            <option value="repayment">Repayment History</option>
+            <option value="summary">Summary Report</option>
+          </select>
+        </div>
+
+        <div class="flex items-center gap-3 mt-2">
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center bg-teal-500 text-white rounded-lg px-6 py-2.5 text-sm font-semibold hover:opacity-90 transition-opacity border-none cursor-pointer"
+            >Search & Generate</button
+          >
+          <a
+            href="/lendscore/lenders-portal/find-report"
+            class="inline-flex items-center justify-center border border-gray-200 rounded-lg px-6 py-2.5 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition no-underline"
+            >Cancel</a
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</AppLayout>

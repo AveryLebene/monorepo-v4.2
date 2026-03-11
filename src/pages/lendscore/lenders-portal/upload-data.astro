@@ -1,0 +1,82 @@
+---
+import AppLayout from "../../../layouts/AppLayout.astro";
+import { config } from "../../../projects/lenders-portal/config";
+---
+
+<AppLayout config={config} title="Dishonoured Cheques">
+  <div class="mb-6">
+    <div class="text-sm text-gray-400">
+      Follow the steps below to upload data.
+    </div>
+  </div>
+
+  <div class="bg-white rounded-md border border-gray-200 p-8">
+    <div class="grid grid-cols-2 gap-8">
+      <div class="flex flex-col gap-2">
+        <div class="text-base font-bold text-gray-900">Step 1</div>
+        <div class="text-sm text-gray-500">
+          Download the excel template, fill it and save it.
+        </div>
+        <div class="mt-2">
+          <a
+            href="#"
+            class="inline-flex items-center gap-2 bg-teal-500 text-white rounded-lg px-5 py-2.5 text-sm font-semibold hover:opacity-90 transition-opacity no-underline"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download to add data
+          </a>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <div class="text-base font-bold text-gray-900">Step 2</div>
+        <div class="text-sm text-gray-500">Upload the new saved file</div>
+        <div
+          class="border-2 border-dashed border-gray-300 rounded-md p-12 text-center bg-gray-50 cursor-pointer hover:border-teal-500 hover:bg-teal-50 transition mt-2"
+        >
+          <svg
+            class="mx-auto mb-2"
+            width="40"
+            height="40"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#9ca3af"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+          <div class="text-sm font-medium text-gray-700">
+            Drag and drop logo here
+          </div>
+          <div class="text-xs text-gray-400 my-3 uppercase font-semibold">
+            OR
+          </div>
+          <button
+            class="inline-flex items-center gap-2 bg-teal-500 text-white rounded-lg px-5 py-2.5 text-sm font-semibold hover:opacity-90 transition-opacity border-none cursor-pointer"
+            >Browse Files</button
+          >
+          <div class="text-[11px] text-gray-400 mt-3">
+            File format must be XLSX &bull; Maximum File Size: 25MB
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</AppLayout>

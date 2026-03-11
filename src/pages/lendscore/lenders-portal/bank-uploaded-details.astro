@@ -1,0 +1,176 @@
+---
+import AppLayout from "@/layouts/AppLayout.astro";
+import { config } from "@/projects/lenders-portal/lensdcore/config";
+---
+
+<AppLayout config={config} title="Upload Details" showNavArrows>
+  <div class="mb-6">
+    <div class="text-sm font-semibold text-gray-500">
+      Upload Progress Details
+    </div>
+    <div class="text-sm text-gray-400 mt-1">
+      View the status and details of your data upload
+    </div>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+    <div class="bg-white rounded-md border border-gray-200 p-5">
+      <div class="text-xs text-gray-500 mb-1">Total Records</div>
+      <div class="text-2xl font-bold text-gray-900">1,245</div>
+    </div>
+    <div class="bg-white rounded-md border border-gray-200 p-5">
+      <div class="text-xs text-gray-500 mb-1">Processed</div>
+      <div class="text-2xl font-bold text-emerald-600">1,100</div>
+    </div>
+    <div class="bg-white rounded-md border border-gray-200 p-5">
+      <div class="text-xs text-gray-500 mb-1">Errors</div>
+      <div class="text-2xl font-bold text-red-600">145</div>
+    </div>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="bg-white rounded-md border border-gray-200 p-5 mb-6">
+    <div class="flex items-center justify-between mb-2">
+      <div class="text-sm font-medium text-gray-700">Processing Progress</div>
+      <div class="text-sm text-gray-500">88%</div>
+    </div>
+    <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+      <div class="h-full bg-teal-500 rounded-full" style="width: 88%"></div>
+    </div>
+    <div class="flex items-center justify-between mt-2">
+      <div class="text-xs text-gray-400">
+        File: 10118-20120130-20120205-1.1-CONC-12.xlsx
+      </div>
+      <div class="text-xs text-gray-400">
+        Uploaded: 18th Oct, 2023 • 10:23 AM
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Records Table -->
+  <div class="mb-4">
+    <div class="text-sm font-semibold text-gray-500">Records With Errors</div>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table
+      class="w-full min-w-[700px] border-collapse bg-white rounded-md overflow-hidden border border-gray-200"
+    >
+      <thead>
+        <tr>
+          <th
+            class="text-left px-4 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wide bg-gray-50 border-b border-gray-200"
+            >Row</th
+          >
+          <th
+            class="text-left px-4 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wide bg-gray-50 border-b border-gray-200"
+            >Name</th
+          >
+          <th
+            class="text-left px-4 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wide bg-gray-50 border-b border-gray-200"
+            >Error Description</th
+          >
+          <th
+            class="text-left px-4 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wide bg-gray-50 border-b border-gray-200"
+            >Status</th
+          >
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hover:bg-gray-50">
+          <td class="px-4 py-3.5 text-sm text-gray-700 border-b border-gray-100"
+            >Row 23</td
+          >
+          <td class="px-4 py-3.5 text-sm text-gray-700 border-b border-gray-100"
+            >Kwame Asante</td
+          >
+          <td class="px-4 py-3.5 text-sm text-gray-700 border-b border-gray-100"
+            >Invalid phone number format</td
+          >
+          <td class="px-4 py-3.5 text-sm border-b border-gray-100"
+            ><span
+              class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium text-red-600 bg-red-50 border border-red-200"
+              >Error</span
+            ></td
+          >
+        </tr>
+        <tr class="hover:bg-gray-50">
+          <td class="px-4 py-3.5 text-sm text-gray-700 border-b border-gray-100"
+            >Row 45</td
+          >
+          <td class="px-4 py-3.5 text-sm text-gray-700 border-b border-gray-100"
+            >Ama Serwaa</td
+          >
+          <td class="px-4 py-3.5 text-sm text-gray-700 border-b border-gray-100"
+            >Missing loan amount</td
+          >
+          <td class="px-4 py-3.5 text-sm border-b border-gray-100"
+            ><span
+              class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium text-red-600 bg-red-50 border border-red-200"
+              >Error</span
+            ></td
+          >
+        </tr>
+        <tr class="hover:bg-gray-50">
+          <td class="px-4 py-3.5 text-sm text-gray-700 border-b border-gray-100"
+            >Row 78</td
+          >
+          <td class="px-4 py-3.5 text-sm text-gray-700 border-b border-gray-100"
+            >Kofi Mensah</td
+          >
+          <td class="px-4 py-3.5 text-sm text-gray-700 border-b border-gray-100"
+            >Duplicate entry detected</td
+          >
+          <td class="px-4 py-3.5 text-sm border-b border-gray-100"
+            ><span
+              class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium text-amber-600 bg-amber-50 border border-amber-200"
+              >Warning</span
+            ></td
+          >
+        </tr>
+        <tr class="hover:bg-gray-50">
+          <td class="px-4 py-3.5 text-sm text-gray-700 border-b border-gray-100"
+            >Row 102</td
+          >
+          <td class="px-4 py-3.5 text-sm text-gray-700 border-b border-gray-100"
+            >Nana Agyemang</td
+          >
+          <td class="px-4 py-3.5 text-sm text-gray-700 border-b border-gray-100"
+            >Invalid date format</td
+          >
+          <td class="px-4 py-3.5 text-sm border-b border-gray-100"
+            ><span
+              class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium text-red-600 bg-red-50 border border-red-200"
+              >Error</span
+            ></td
+          >
+        </tr>
+        <tr class="hover:bg-gray-50">
+          <td class="px-4 py-3.5 text-sm text-gray-700">Row 156</td>
+          <td class="px-4 py-3.5 text-sm text-gray-700">Efua Amoah</td>
+          <td class="px-4 py-3.5 text-sm text-gray-700">Missing ID number</td>
+          <td class="px-4 py-3.5 text-sm"
+            ><span
+              class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium text-red-600 bg-red-50 border border-red-200"
+              >Error</span
+            ></td
+          >
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="flex items-center gap-3 mt-6">
+    <a
+      href="/lendscore/lenders-portal/upload-data"
+      class="inline-flex items-center justify-center bg-teal-500 text-white rounded-lg px-6 py-2.5 text-sm font-semibold hover:opacity-90 transition-opacity no-underline"
+      >Upload Corrections</a
+    >
+    <a
+      href="/lendscore/lenders-portal/bank-uploaded"
+      class="inline-flex items-center justify-center border border-gray-200 rounded-lg px-6 py-2.5 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition no-underline"
+      >Back to Uploads</a
+    >
+  </div>
+</AppLayout>

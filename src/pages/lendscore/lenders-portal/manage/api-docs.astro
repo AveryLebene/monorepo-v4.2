@@ -1,0 +1,113 @@
+---
+import AppLayout from "../../../../layouts/AppLayout.astro";
+import { config } from "../../../../projects/lenders-portal/config";
+---
+
+<AppLayout config={config} title="API Documentation" showNavArrows>
+  <div class="max-w-3xl">
+    <div class="mb-6">
+      <div class="text-sm font-semibold text-gray-900 mb-0.5">Api Documentation</div>
+      <div class="text-sm text-gray-500">
+        View API Documentation here
+      </div>
+    </div>
+
+    <div class="bg-white rounded-md border border-gray-200 p-6 mb-4">
+      <div class="text-base font-bold text-gray-900 mb-1">Base URL</div>
+      <code class="text-sm bg-gray-100 px-3 py-2 rounded-md block text-gray-700"
+        >https://api.lendscore.hubtel.com/v1</code
+      >
+    </div>
+
+    <div class="bg-white rounded-md border border-gray-200 p-6 mb-4">
+      <div class="text-base font-bold text-gray-900 mb-1">Authentication</div>
+      <div class="text-sm text-gray-500 mb-3">
+        Include your API key in the Authorization header:
+      </div>
+      <code class="text-sm bg-gray-100 px-3 py-2 rounded-md block text-gray-700"
+        >Authorization: Bearer sk_live_your_api_key</code
+      >
+    </div>
+
+    <div class="flex flex-col gap-4">
+      <div class="bg-white rounded-md border border-gray-200 p-6">
+        <div class="flex items-center gap-2 mb-2">
+          <span
+            class="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold text-emerald-700 bg-emerald-100"
+            >GET</span
+          >
+          <code class="text-sm text-gray-700">{`/credit-reports/{id}`}</code>
+        </div>
+        <div class="text-sm text-gray-500">Retrieve a credit report by ID</div>
+      </div>
+
+      <div class="bg-white rounded-md border border-gray-200 p-6">
+        <div class="flex items-center gap-2 mb-2">
+          <span
+            class="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold text-blue-700 bg-blue-100"
+            >POST</span
+          >
+          <code class="text-sm text-gray-700">/credit-reports</code>
+        </div>
+        <div class="text-sm text-gray-500">Request a new credit report</div>
+      </div>
+
+      <div class="bg-white rounded-md border border-gray-200 p-6">
+        <div class="flex items-center gap-2 mb-2">
+          <span
+            class="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold text-emerald-700 bg-emerald-100"
+            >GET</span
+          >
+          <code class="text-sm text-gray-700">{`/identity-reports/{id}`}</code>
+        </div>
+        <div class="text-sm text-gray-500">
+          Retrieve an identity report by ID
+        </div>
+      </div>
+
+      <div class="bg-white rounded-md border border-gray-200 p-6">
+        <div class="flex items-center gap-2 mb-2">
+          <span
+            class="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold text-blue-700 bg-blue-100"
+            >POST</span
+          >
+          <code class="text-sm text-gray-700">/loans</code>
+        </div>
+        <div class="text-sm text-gray-500">Report a new loan</div>
+      </div>
+
+      <div class="bg-white rounded-md border border-gray-200 p-6">
+        <div class="flex items-center gap-2 mb-2">
+          <span
+            class="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold text-amber-700 bg-amber-100"
+            >PUT</span
+          >
+          <code class="text-sm text-gray-700">{`/loans/{id}`}</code>
+        </div>
+        <div class="text-sm text-gray-500">Update loan status</div>
+      </div>
+
+      <div class="bg-white rounded-md border border-gray-200 p-6">
+        <div class="flex items-center gap-2 mb-2">
+          <span
+            class="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold text-emerald-700 bg-emerald-100"
+            >GET</span
+          >
+          <code class="text-sm text-gray-700">/wallet/balance</code>
+        </div>
+        <div class="text-sm text-gray-500">Get current wallet balance</div>
+      </div>
+
+      <div class="bg-white rounded-md border border-gray-200 p-6">
+        <div class="flex items-center gap-2 mb-2">
+          <span
+            class="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-bold text-blue-700 bg-blue-100"
+            >POST</span
+          >
+          <code class="text-sm text-gray-700">/wallet/topup</code>
+        </div>
+        <div class="text-sm text-gray-500">Initiate a wallet top-up</div>
+      </div>
+    </div>
+  </div>
+</AppLayout>

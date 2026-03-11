@@ -1,22 +1,57 @@
 ---
-const pathname = Astro.url.pathname;
-import DashboardTemplate from "../templates/DashboardTemplate.tsx";
-const { title = "MA Portal" } = Astro.props;
+/**
+ * BaseLayout — the pure HTML shell.
+ * Handles <head>, global styles, and the data-theme attribute.
+ * Does NOT include any template (sidebar, navbar, etc.)
+ * Compose this with a template-specific layout (DashboardLayout, FullWidthLayout, etc.)
+ */
 import "../styles/global.css";
+import type { ProjectFonts } from "../config/types";
+
+interface Props {
+  title?: string;
+  theme?: string;
+  v5Theme?: string;
+  description?: string;
+  fonts?: ProjectFonts;
+}
+
+const {
+  title = "App",
+  theme = "default",
+  description = "",
+  v5Theme = "",
+  fonts,
+} = Astro.props;
+
+const fontStyle = fonts
+  ? (() => {
+      const body = typeof fonts === "string" ? fonts : fonts.body;
+      const heading = typeof fonts === "string" ? fonts : fonts.heading ?? body;
+      return [
+        body && `--font-body: ${body}`,
+        heading && `--font-heading: ${heading}`,
+      ]
+        .filter(Boolean)
+        .join("; ");
+    })()
+  : "";
 ---
 
-<html lang="en">
+<html
+  lang="en"
+  data-theme-astro={theme}
+  data-theme={v5Theme}
+  style={fontStyle || undefined}
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="MA Portal" />
+    {description && <meta name="description" content={description} />}
     <meta name="format-detection" content="telephone=no,email=no" />
-
     <title>{title}</title>
   </head>
   <body class="h-dvh">
-    <DashboardTemplate pathname={pathname}>
-      <slot />
-    </DashboardTemplate>
+    <slot />
   </body>
 </html>

@@ -1,0 +1,71 @@
+---
+import AppLayout from "../../../layouts/AppLayout.astro";
+import { config } from "../../../projects/lenders-portal/config";
+---
+
+<AppLayout config={config} title="Wallet Top Up" showNavArrows>
+  <div class="max-w-lg">
+    <div class="mb-6">
+      <div class="text-sm font-semibold text-gray-500">Top Up Your Wallet</div>
+      <div class="text-sm text-gray-400 mt-1">
+        Add funds to your wallet to purchase reports
+      </div>
+    </div>
+
+    <div class="bg-white rounded-md border border-gray-200 p-6">
+      <!-- Current Balance -->
+      <div class="bg-[#376e8e] rounded-md p-5 text-white mb-6">
+        <div class="text-xs opacity-80 mb-1">Current Balance</div>
+        <div class="text-2xl font-bold">GHS 130,000.00</div>
+      </div>
+
+      <form class="flex flex-col gap-5">
+        <div class="flex flex-col gap-1.5">
+          <label class="text-sm font-medium text-gray-700">Amount</label>
+          <input
+            type="text"
+            class="border border-gray-200 rounded-lg py-2.5 px-4 text-sm text-gray-700 bg-white outline-none focus:border-teal-500 transition-colors"
+            placeholder="GHS 0.00"
+          />
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="text-sm font-medium text-gray-700">Payment Method</label
+          >
+          <select
+            class="border border-gray-200 rounded-lg py-2.5 px-4 text-sm text-gray-700 bg-white outline-none focus:border-teal-500 transition-colors"
+          >
+            <option value="">Select payment method</option>
+            <option value="momo">Mobile Money</option>
+            <option value="card">Debit/Credit Card</option>
+            <option value="bank">Bank Transfer</option>
+          </select>
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="text-sm font-medium text-gray-700"
+            >Phone Number / Account</label
+          >
+          <input
+            type="text"
+            class="border border-gray-200 rounded-lg py-2.5 px-4 text-sm text-gray-700 bg-white outline-none focus:border-teal-500 transition-colors"
+            placeholder="Enter phone number or account"
+          />
+        </div>
+
+        <div class="flex items-center gap-3 mt-2">
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center bg-teal-500 text-white rounded-lg px-6 py-2.5 text-sm font-semibold hover:opacity-90 transition-opacity border-none cursor-pointer"
+            >Top Up</button
+          >
+          <a
+            href="/lendscore/lenders-portal/"
+            class="inline-flex items-center justify-center border border-gray-200 rounded-lg px-6 py-2.5 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition no-underline"
+            >Cancel</a
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</AppLayout>

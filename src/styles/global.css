@@ -1,5 +1,23 @@
-@import "tailwindcss";
+@import "@hubtel/shared-styles";
+@source "../../node_modules/@hubtel/react-ui";
 
+@import "./base/reset.css";
+@import "./themes/tokens.css";
 
-/* @import "/base/reset"; */
+body {
+  font-family: var(--font-body);
+}
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+@theme {
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-deep-primary: var(--deep-primary);
+  --color-accent: var(--accent);
+  --color-disable: var(--disable);
+  --color-success: var(--success);
+  --color-secondary: var(--secondary);
+}

@@ -1,9 +1,9 @@
 ---
-import DashboardTemplate from '../../templates/DashboardTemplate.tsx';
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import AppLayout from "../../layouts/AppLayout.astro";
+import { config } from "../../projects/ma-portal/config";
 ---
 
-<BaseLayout>
+<AppLayout config={config} title="Settings">
   <h1 class="text-2xl font-bold text-amber-600">Welcome to the Settings</h1>
-  <p class="">This is the main settings area.</p>
-</BaseLayout>
+  <p>This is the main settings area.</p>
+</AppLayout>

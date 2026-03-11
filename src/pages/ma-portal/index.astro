@@ -1,10 +1,18 @@
 ---
-import DashboardTemplate from '../../templates/DashboardTemplate.tsx';
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import Button from "../../components/atoms/Button.tsx";
+import AppLayout from "../../layouts/AppLayout.astro";
+import { config } from "../../projects/ma-portal/config";
+import { Button } from "@hubtel/react-ui/button";
 ---
 
-<BaseLayout>
-  <h1 class="text-2xl font-bold text-amber-600">Welcome to the Dashboard</h1>
-  <p>This is the main content area.</p>
-</BaseLayout>
+<AppLayout config={config} title="Dashboard">
+  <h1 class="text-2xl font-bold text-primary">Welcome to the Dashboard</h1>
+  <p class="">This is the main content area.</p>
+  <Button
+    onClick={function eG() {}}
+    size="md"
+    text="Primary Button"
+    variant="default"
+    className="bg-primary"
+  />
+
+</AppLayout>

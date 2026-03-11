@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.2.7",
+    "@hubtel/react-icons": "^1.0.4",
+    "@hubtel/react-ui": "^2.1.2",
+    "@hubtel/shared-styles": "^0.3.0",
     "@tailwindcss/vite": "^4.1.6",
     "astro": "^5.7.12",
     "react": "^19.1.0",

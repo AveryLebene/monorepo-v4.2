@@ -1,0 +1,17 @@
+---
+import AppLayout from "@/layouts/AppLayout.astro";
+import { config } from "@/projects/lenders-portal/config";
+---
+
+<AppLayout config={config} title="Dashboard" noPadding="true">
+  <div class="h-full min-h-0 flex flex-col px-4 sm:px-6 lg:px-6">
+    <!-- Dashboard view: Default (main content) - visible on local -->
+    <section
+      data-dashboard-view="default"
+      class=""
+      aria-label="Main dashboard"
+    >
+ <h1 class="text-2xl font-bold text-accent"> LENDSCORE HUB</h1>
+ <p>Welcome to the Lendscore Hub</p>
+  </div>
+</AppLayout>

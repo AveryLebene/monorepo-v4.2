@@ -1,0 +1,39 @@
+---
+import AppLayout from "../../../layouts/AppLayout.astro";
+import { config } from "../../../projects/lenders-portal/config";
+import {Button} from "@hubtel/react-ui/button";
+---
+
+<AppLayout config={config} title="Judgement Debt">
+  <div class="grid flex-row-reverse md:flex-row grid-cols-1 md:grid-cols-2 gap-8 items-center h-full justify-center max-w-5xl m-auto">
+    <!-- Left: Access notice -->
+    <div>
+      <div class="text-lg font-semibold text-gray-900 mb-4">
+        You don't have access
+      </div>
+      <p class="text-sm text-secondary leading-relaxed mb-3">
+        To standardize and improve the quality of data submitted to credit
+        bureaus, the Bank of Ghana's Banking Supervision Department created a
+        common reporting template for consumer judgment debts. This template was
+        developed with input from the Bank of Ghana, licensed credit bureaus,
+        and selected financial institutions, and was approved after necessary
+        revisions.
+      </p>
+      <p class="text-sm text-secondary leading-relaxed mb-6">
+        Lenders must use this official format for submitting judgment debt data.
+        The Credit Bureaus will only accept data in this specified format.
+        Unauthorized lenders should review the guide carefully to ensure
+        compliance before uploading judgment debt information.
+      </p>
+      <Button className="bg-primary w-full hover:bg-deep-primary active:bg-deep-primary">OKAY</Button>
+    </div>
+
+    <!-- Right: Illustration -->
+    <div class="flex items-center justify-center">
+      <div class="text-center">
+        <img src="./svg/financial-inst.svg" alt="image" />
+   
+      </div>
+    </div>
+  </div>
+</AppLayout>

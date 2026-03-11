@@ -1,0 +1,106 @@
+---
+import AppLayout from "../../../layouts/AppLayout.astro";
+import { config } from "../../../projects/lenders-portal/config";
+---
+
+<AppLayout config={config} title="Select Business" showNavArrows>
+  <div class="max-w-2xl mx-auto py-6">
+    <div class="mb-6 text-center">
+      <div class="text-lg font-semibold text-gray-900">Switch Business</div>
+      <div class="text-sm text-gray-400 mt-1">Select a business to manage</div>
+    </div>
+
+    <div class="flex flex-col gap-3">
+      <a
+        href="/lendscore/lenders-portal/"
+        class="bg-white border-2 border-teal-500 rounded-xl p-5 no-underline text-inherit flex items-center gap-4 cursor-pointer group"
+      >
+        <div
+          class="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600 font-bold text-lg shrink-0"
+        >
+          D2
+        </div>
+        <div class="flex-1">
+          <div class="text-sm font-semibold text-gray-900">
+            Deals 2D Car Service
+          </div>
+          <div class="text-xs text-gray-500 mt-0.5">Current business</div>
+        </div>
+        <div
+          class="w-5 h-5 rounded-full bg-teal-500 flex items-center justify-center shrink-0"
+        >
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+      </a>
+
+      <a
+        href="/lendscore/lenders-portal/"
+        class="bg-white border border-gray-200 rounded-xl p-5 no-underline text-inherit flex items-center gap-4 hover:border-teal-500 hover:shadow-sm transition cursor-pointer group"
+      >
+        <div
+          class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-lg shrink-0"
+        >
+          MF
+        </div>
+        <div class="flex-1">
+          <div class="text-sm font-semibold text-gray-900">
+            MicroFinance Ltd
+          </div>
+          <div class="text-xs text-gray-500 mt-0.5">5 employees</div>
+        </div>
+        <svg
+          class="text-gray-300 group-hover:text-teal-500 transition shrink-0"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M9 18l6-6-6-6"></path>
+        </svg>
+      </a>
+
+      <a
+        href="/lendscore/lenders-portal/"
+        class="bg-white border border-gray-200 rounded-xl p-5 no-underline text-inherit flex items-center gap-4 hover:border-teal-500 hover:shadow-sm transition cursor-pointer group"
+      >
+        <div
+          class="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600 font-bold text-lg shrink-0"
+        >
+          GL
+        </div>
+        <div class="flex-1">
+          <div class="text-sm font-semibold text-gray-900">GoldLoans Ghana</div>
+          <div class="text-xs text-gray-500 mt-0.5">12 employees</div>
+        </div>
+        <svg
+          class="text-gray-300 group-hover:text-teal-500 transition shrink-0"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M9 18l6-6-6-6"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</AppLayout>

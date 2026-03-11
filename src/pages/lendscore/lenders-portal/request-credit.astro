@@ -1,0 +1,251 @@
+---
+import AppLayout from "../../../layouts/AppLayout.astro";
+import { config } from "../../../projects/lenders-portal/config";
+import { Pagination } from "@hubtel/react-ui/pagination";
+---
+
+<AppLayout config={config} title="New Loan Seekers">
+  <!-- Tabs -->
+  <div class="flex border-b border-gray-200 mb-4">
+    <button
+      class="px-4 py-2.5 text-sm font-medium text-primary border-b-2 border-primary bg-transparent cursor-pointer"
+      >All Loan Requests</button
+    >
+    <button
+      class="px-4 py-2.5 text-sm font-medium text-gray-400 border-b-2 border-transparent bg-transparent cursor-pointer hover:text-gray-600"
+      >Accepted For Processing</button
+    >
+  </div>
+
+  <div class="text-sm text-gray-400 mb-5">
+    View profiles of individuals and businesses applying for new loans. Review
+    their information, assess eligibility, and track new applications.
+  </div>
+
+  <!-- Cards list -->
+  <div class="flex flex-col gap-4">
+    <!-- Card 1 -->
+    <div
+      class="bg-white border border-gray-200 rounded-md p-5 flex flex-col sm:flex-row sm:items-center gap-4"
+    >
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 flex-1">
+        <div>
+          <div class="text-xs text-primary mb-1">Date Requested</div>
+          <div class="text-sm text-gray-800">18th Oct, 2023 • 10:23 AM</div>
+        </div>
+        <div>
+          <div class="text-xs text-primary mb-1">Name</div>
+          <div class="text-sm text-gray-800">Derrick Afriyie</div>
+        </div>
+        <div>
+          <div class="text-xs text-primary mb-1">Amount Requested</div>
+          <div class="text-sm text-gray-800">GHS 50,000.00</div>
+        </div>
+        <div>
+          <div class="text-xs text-primary mb-1">Credit Type</div>
+          <div class="text-sm text-gray-800">Car Finance</div>
+        </div>
+      </div>
+      <a
+        href="/lendscore/lenders-portal/report-summary"
+        class="inline-flex items-center gap-1.5 text-xs text-primary no-underline px-3 py-2 rounded-md hover:bg-teal-50 transition whitespace-nowrap border border-gray-200 sm:border-none"
+      >
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+        View Credit Profile
+      </a>
+    </div>
+
+    <!-- Card 2 -->
+    <div
+      class="bg-white border border-gray-200 rounded-md p-5 flex flex-col sm:flex-row sm:items-center gap-4"
+    >
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 flex-1">
+        <div>
+          <div class="text-xs text-primary mb-1">Date Requested</div>
+          <div class="text-sm text-gray-800">18th Oct, 2023 • 10:23 AM</div>
+        </div>
+        <div>
+          <div class="text-xs text-primary mb-1">Name</div>
+          <div class="text-sm text-gray-800">Kwame Asante</div>
+        </div>
+        <div>
+          <div class="text-xs text-primary mb-1">Amount Requested</div>
+          <div class="text-sm text-gray-800">GHS 30,000.00</div>
+        </div>
+        <div>
+          <div class="text-xs text-primary mb-1">Credit Type</div>
+          <div class="text-sm text-gray-800">Personal Loan</div>
+        </div>
+      </div>
+      <a
+        href="/lendscore/lenders-portal/report-summary"
+        class="inline-flex items-center gap-1.5 text-xs text-primary no-underline px-3 py-2 rounded-md hover:bg-teal-50 transition whitespace-nowrap border border-gray-200 sm:border-none"
+      >
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+        View Credit Profile
+      </a>
+    </div>
+
+    <!-- Card 3 -->
+    <div
+      class="bg-white border border-gray-200 rounded-md p-5 flex flex-col sm:flex-row sm:items-center gap-4"
+    >
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 flex-1">
+        <div>
+          <div class="text-xs text-primary mb-1">Date Requested</div>
+          <div class="text-sm text-gray-800">18th Oct, 2023 • 10:23 AM</div>
+        </div>
+        <div>
+          <div class="text-xs text-primary mb-1">Name</div>
+          <div class="text-sm text-gray-800">Ama Serwaa</div>
+        </div>
+        <div>
+          <div class="text-xs text-primary mb-1">Amount Requested</div>
+          <div class="text-sm text-gray-800">GHS 15,000.00</div>
+        </div>
+        <div>
+          <div class="text-xs text-primary mb-1">Credit Type</div>
+          <div class="text-sm text-gray-800">Business Loan</div>
+        </div>
+      </div>
+      <a
+        href="/lendscore/lenders-portal/report-summary"
+        class="inline-flex items-center gap-1.5 text-xs text-primary no-underline px-3 py-2 rounded-md hover:bg-teal-50 transition whitespace-nowrap border border-gray-200 sm:border-none"
+      >
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+        View Credit Profile
+      </a>
+    </div>
+
+    <!-- Card 4 -->
+    <div
+      class="bg-white border border-gray-200 rounded-md p-5 flex flex-col sm:flex-row sm:items-center gap-4"
+    >
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 flex-1">
+        <div>
+          <div class="text-xs text-primary mb-1">Date Requested</div>
+          <div class="text-sm text-gray-800">18th Oct, 2023 • 10:23 AM</div>
+        </div>
+        <div>
+          <div class="text-xs text-primary mb-1">Name</div>
+          <div class="text-sm text-gray-800">Kofi Mensah</div>
+        </div>
+        <div>
+          <div class="text-xs text-primary mb-1">Amount Requested</div>
+          <div class="text-sm text-gray-800">GHS 100,000.00</div>
+        </div>
+        <div>
+          <div class="text-xs text-primary mb-1">Credit Type</div>
+          <div class="text-sm text-gray-800">Mortgage</div>
+        </div>
+      </div>
+      <a
+        href="/lendscore/lenders-portal/report-summary"
+        class="inline-flex items-center gap-1.5 text-xs text-primary no-underline px-3 py-2 rounded-md hover:bg-teal-50 transition whitespace-nowrap border border-gray-200 sm:border-none"
+      >
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+        View Credit Profile
+      </a>
+    </div>
+
+    <!-- Card 5 -->
+    <div
+      class="bg-white border border-gray-200 rounded-md p-5 flex flex-col sm:flex-row sm:items-center gap-4"
+    >
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 flex-1">
+        <div>
+          <div class="text-xs text-primary mb-1">Date Requested</div>
+          <div class="text-sm text-gray-800">18th Oct, 2023 • 10:23 AM</div>
+        </div>
+        <div>
+          <div class="text-xs text-primary mb-1">Name</div>
+          <div class="text-sm text-gray-800">Abena Owusu</div>
+        </div>
+        <div>
+          <div class="text-xs text-primary mb-1">Amount Requested</div>
+          <div class="text-sm text-gray-800">GHS 8,000.00</div>
+        </div>
+        <div>
+          <div class="text-xs text-primary mb-1">Credit Type</div>
+          <div class="text-sm text-gray-800">Education Loan</div>
+        </div>
+      </div>
+      <a
+        href="/lendscore/lenders-portal/report-summary"
+        class="inline-flex items-center gap-1.5 text-xs text-primary no-underline px-3 py-2 rounded-md hover:bg-teal-50 transition whitespace-nowrap border border-gray-200 sm:border-none"
+      >
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+        View Credit Profile
+      </a>
+    </div>
+  </div>
+
+  <Pagination
+    onPageChange={function tG() {}}
+    onPageSizeChange={function tG() {}}
+    page={1}
+    pageSize={10}
+    totalRecords={100}
+    variant="default"
+  />
+</AppLayout>

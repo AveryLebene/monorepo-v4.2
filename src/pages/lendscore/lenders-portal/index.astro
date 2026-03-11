@@ -1,0 +1,161 @@
+---
+import AppLayout from "../../../layouts/AppLayout.astro";
+import { config } from "../../../projects/lenders-portal/config";
+---
+
+<AppLayout config={config} title="Dashboard" noPadding="true">
+  <div class="h-full min-h-0 flex flex-col px-4 sm:px-6 lg:px-6">
+    <!-- Dashboard view: Default (main content) - visible on local -->
+    <section
+      data-dashboard-view="default"
+      class="flex-1 grid grid-cols-1 lg:grid-cols-[1fr_340px] xl:grid-cols-[1fr_400px] 2xl:grid-cols-[1fr_440px] gap-4 lg:gap-6 min-h-0 py-4 sm:py-6"
+      aria-label="Main dashboard"
+    >
+      <div class="flex flex-col gap-4 sm:gap-6 min-h-0 overflow-y-auto">
+        <!-- Balance card -->
+        <div class="bg-(--deep-primary) rounded-lg p-4 sm:p-6 text-white flex flex-col gap-3 shrink-0">
+          <div class="flex items-start justify-between gap-3">
+            <div class="min-w-0">
+              <div class="text-sm mb-2 flex items-center gap-2">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+                  <path d="M2.25003 7.50059e-05C1.07236 7.50059e-05 0.103241 0.928787 0.016634 2.08601C0.00508729 2.13992 -0.000480204 2.19494 3.2423e-05 2.25008V3.75008V4.50007V15.7501C3.2423e-05 16.9838 1.01628 18.0001 2.25003 18.0001H15.75C16.9838 18.0001 18 16.9838 18 15.7501V5.25007C18 4.01632 16.9838 3.00008 15.75 3.00008H2.25003C1.82678 3.00008 1.50003 2.67332 1.50003 2.25008C1.50003 1.82683 1.82678 1.50007 2.25003 1.50007H14.75C14.8494 1.50148 14.9481 1.48312 15.0403 1.44606C15.1325 1.409 15.2165 1.35398 15.2873 1.2842C15.358 1.21441 15.4142 1.13126 15.4526 1.03956C15.491 0.947871 15.5107 0.849469 15.5107 0.750075C15.5107 0.650681 15.491 0.552278 15.4526 0.460586C15.4142 0.368893 15.358 0.285738 15.2873 0.215955C15.2165 0.146172 15.1325 0.091151 15.0403 0.0540906C14.9481 0.0170303 14.8494 -0.00133053 14.75 7.50059e-05H2.25003ZM1.50003 4.50007H2.25003H15.75C16.1733 4.50007 16.5 4.82683 16.5 5.25007V15.7501C16.5 16.1733 16.1733 16.5001 15.75 16.5001H2.25003C1.82678 16.5001 1.50003 16.1733 1.50003 15.7501V4.50007ZM13.75 9.00008C13.4185 9.00008 13.1006 9.13177 12.8661 9.36619C12.6317 9.60061 12.5 9.91855 12.5 10.2501C12.5 10.5816 12.6317 10.8995 12.8661 11.134C13.1006 11.3684 13.4185 11.5001 13.75 11.5001C14.0816 11.5001 14.3995 11.3684 14.6339 11.134C14.8683 10.8995 15 10.5816 15 10.2501C15 9.91855 14.8683 9.60061 14.6339 9.36619C14.3995 9.13177 14.0816 9.00008 13.75 9.00008Z" fill="white" />
+                </svg>
+                <span>Balance</span>
+              </div>
+              <div class="text-xl sm:text-2xl font-bold tracking-tight truncate">GHS 130,000.00</div>
+            </div>
+            <a href="/lendscore/lenders-portal/wallet-topup" class="inline-flex items-center justify-center bg-white text-(--primary) rounded-md px-4 sm:px-5 py-2 text-sm font-semibold hover:opacity-90 transition-opacity w-fit no-underline shrink-0">TOP UP</a>
+          </div>
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="text-xs text-(--disable)">Current wallet amount available for requests</div>
+            <a href="/lendscore/lenders-portal/top-up-history" class="text-xs text-(--success) font-semibold no-underline flex items-center gap-1 hover:opacity-100 transition-opacity">
+              Transaction History
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Stat cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+          <div class="rounded-lg p-4 sm:p-5 flex flex-col gap-2 bg-(--primary-light) border border-(--primary-light) shrink-0">
+            <div class="flex items-center gap-2 mb-1">
+              <svg width="19" height="21" viewBox="0 0 19 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.25 0C1.0095 0 0 1.0095 0 2.25V17.75C0 18.9905 1.0095 20 2.25 20H10.0596C9.74407 19.551 9.55227 19.0445 9.50977 18.5H2.25C1.8365 18.5 1.5 18.1635 1.5 17.75V2.25C1.5 1.8365 1.8365 1.5 2.25 1.5H8V5.75C8 6.9905 9.0095 8 10.25 8H14.5V9.00879C14.5825 9.00329 14.666 9 14.75 9C15.188 9 15.609 9.07634 16 9.21484V7.25C16 7.04275 15.916 6.85541 15.7803 6.71973L9.28027 0.219727C9.14459 0.0840391 8.95725 0 8.75 0H2.25ZM9.5 2.56055L13.4395 6.5H10.25C9.8365 6.5 9.5 6.1635 9.5 5.75V2.56055Z" fill="#306D8A" /></svg>
+              <p class="text-sm text-(--secondary)">Count of Credit Reports Purchased</p>
+            </div>
+            <div class="text-xl sm:text-2xl font-bold text-gray-900">2,500</div>
+            <a href="/lendscore/lenders-portal/credit-report" class="text-xs text-(--primary) no-underline flex items-center font-semibold justify-end gap-1 mt-auto hover:opacity-80 transition-opacity">View All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg></a>
+          </div>
+          <div class="rounded-lg p-4 sm:p-5 flex flex-col gap-2 bg-(--primary-light) border border-(--primary-light) shrink-0">
+            <div class="flex items-center gap-2 mb-1">
+              <svg width="19" height="21" viewBox="0 0 19 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.25 0C1.01 0 0 1.01 0 2.25V17.75C0 18.99 1.01 20 2.25 20H8.82031C8.39231 19.5555 8.02776 19.0515 7.73926 18.5H2.25C1.835 18.5 1.5 18.165 1.5 17.75V2.25C1.5 1.835 1.835 1.5 2.25 1.5H8V5.75C8 6.99 9.01 8 10.25 8H14.5V9.08496C15.0225 9.16596 15.5265 9.30345 16 9.50195V7.25C16 7.0425 15.9159 6.85535 15.7803 6.71973L9.28027 0.219727C9.14465 0.0841016 8.9575 0 8.75 0H2.25ZM9.5 2.56055L13.4395 6.5H10.25C9.835 6.5 9.5 6.165 9.5 5.75V2.56055Z" fill="#306D8A" /></svg>
+              <p class="text-sm text-(--secondary)">Count of Borrowers Reported</p>
+            </div>
+            <div class="text-xl sm:text-2xl font-bold text-gray-900">2,500</div>
+            <a href="/lendscore/lenders-portal/report-borrower" class="text-xs text-(--primary) no-underline flex items-center font-semibold justify-end gap-1 mt-auto hover:opacity-80 transition-opacity">View All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg></a>
+          </div>
+          <div class="rounded-lg p-4 sm:p-5 flex flex-col gap-2 bg-(--primary-light) border border-(--primary-light) shrink-0">
+            <div class="flex items-center gap-2 mb-1">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 2.49863C8.905 2.49863 8.80973 2.5168 8.71973 2.5543L6.51465 3.43418L4.55469 2.56504C4.31969 2.46004 4.05484 2.47973 3.83984 2.61973C3.62984 2.75973 3.5 2.99461 3.5 3.24961V18.7496C3.5 20.2646 4.735 21.4996 6.25 21.4996H12.5596C12.3146 21.0396 12.1446 20.5346 12.0596 19.9996H6.25C5.56 19.9996 5 19.4396 5 18.7496V4.40488L6.19531 4.93418C6.38031 5.01918 6.59027 5.01992 6.78027 4.94492L9 4.05918L11.2197 4.94492C11.3997 5.01992 11.6003 5.01992 11.7803 4.94492L14 4.05918L16.2197 4.94492C16.4097 5.01992 16.6197 5.01918 16.8047 4.93418L18 4.40488V13.0396C18.45 12.7746 18.96 12.5999 19.5 12.5299V3.24961C19.5 2.99461 19.3702 2.75973 19.1602 2.61973C18.9452 2.48473 18.6803 2.46004 18.4453 2.56504L16.4854 3.43418L14.2803 2.5543C14.1003 2.4793 13.8997 2.4793 13.7197 2.5543L11.5 3.44004L9.28027 2.5543C9.19027 2.5168 9.095 2.49863 9 2.49863Z" fill="#26576E" /></svg>
+              <p class="text-sm text-(--secondary)">Count of Non-Loan Borrowings</p>
+            </div>
+            <div class="text-xl sm:text-2xl font-bold text-gray-900">2,500</div>
+            <a href="/lendscore/lenders-portal/credit-report" class="text-xs text-(--primary) no-underline flex items-center font-semibold justify-end gap-1 mt-auto hover:opacity-80 transition-opacity">View All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg></a>
+          </div>
+        </div>
+
+        <!-- Licensed Bank Section -->
+        <div class="shrink-0">
+          <div class="text-sm font-semibold text-gray-900 mb-3">For Licensed Bank / Non-Bank Only</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            <div class="rounded-lg p-4 sm:p-5 flex flex-col gap-2 bg-(--primary-light) border border-(--primary-light)">
+              <div class="flex items-center gap-2 mb-1">
+                <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.50052 0C8.90233 0 8.30354 0.186602 7.80032 0.560547L0.303253 6.12988C0.1765 6.22389 0.0826263 6.35548 0.0349898 6.50593C-0.0126468 6.65638 -0.0116186 6.81801 0.0379278 6.96784C0.0874742 7.11767 0.183015 7.24806 0.310953 7.34045C0.438892 7.43283 0.59271 7.48252 0.750519 7.48242H18.2505C18.4083 7.48252 18.5621 7.43283 18.6901 7.34045C18.818 7.24806 18.9136 7.11767 18.9631 6.96784C19.0127 6.81801 19.0137 6.65638 18.966 6.50593C18.9184 6.35548 18.8245 6.22389 18.6978 6.12988L11.1997 0.560547C10.6965 0.186602 10.0987 0 9.50052 0Z" fill="#306D8A" /></svg>
+                <p class="text-sm text-(--secondary)">Count of Bank / Non-Bank Loans Uploaded</p>
+              </div>
+              <div class="text-xl sm:text-2xl font-bold text-gray-900">2,500</div>
+              <a href="/lendscore/lenders-portal/bank-uploaded" class="text-xs text-(--primary) no-underline flex items-center font-semibold justify-end gap-1 mt-auto hover:opacity-80 transition-opacity">View All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity sidebar -->
+      <aside class="min-h-0 flex flex-col order-first lg:order-last">
+        <div class="bg-white rounded-lg border border-gray-200 overflow-hidden flex flex-col min-h-0 shrink-0">
+          <div class="px-4 sm:px-5 pt-4 sm:pt-5 pb-2 shrink-0">
+            <h2 class="text-sm font-semibold text-gray-900">Activity</h2>
+          </div>
+          <ul class="list-none p-0 m-0 overflow-y-auto flex-1 min-h-0 px-4 sm:px-5 pb-4" role="list">
+            <li class="flex flex-col gap-0.5 py-3 border-b border-gray-200"><span class="text-[11px] text-gray-400">8th May, 2023 at 1:19 pm</span><span class="text-sm text-(--secondary)"><strong>Stephen Kumi</strong> made top-up of <strong>GHS 20.00</strong></span></li>
+            <li class="flex flex-col gap-0.5 py-3 border-b border-gray-200"><span class="text-[11px] text-gray-400">8th May, 2023 at 1:19 pm</span><span class="text-sm text-(--secondary)"><strong>Godwin Doglo</strong> logged in account at 22:00GMT</span></li>
+            <li class="flex flex-col gap-0.5 py-3 border-b border-gray-200"><span class="text-[11px] text-gray-400">8th May, 2023 at 1:19 pm</span><span class="text-sm text-(--secondary)"><strong>Derrick Afriyie</strong> upload data for <strong>Bank / Non-Bank Loans</strong></span></li>
+            <li class="flex flex-col gap-0.5 py-3 border-b border-gray-200"><span class="text-[11px] text-gray-400">8th May, 2023 at 1:19 pm</span><span class="text-sm text-(--secondary)"><strong>Yolanda Dotse</strong> purchased a credit report at 22:00 GMT</span></li>
+            <li class="flex flex-col gap-0.5 py-3 border-b border-gray-200"><span class="text-[11px] text-gray-400">8th May, 2023 at 1:19 pm</span><span class="text-sm text-(--secondary)"><strong>Ben Aaron Mills - Papoe</strong> made payment of <strong>GHS 150.00</strong></span></li>
+            <li class="flex flex-col gap-0.5 py-3 border-b border-gray-200"><span class="text-[11px] text-gray-400">8th May, 2023 at 1:19 pm</span><span class="text-sm text-(--secondary)"><strong>Nancy Afia Adutwumwaa</strong> completed a withdrawal <strong>GHS 20.00</strong> on credit</span></li>
+            <li class="flex flex-col gap-0.5 py-3"><span class="text-[11px] text-gray-400">8th May, 2023 at 1:19 pm</span><span class="text-sm text-(--secondary)"><strong>Cole Palmer</strong> completed a withdrawal <strong>GHS 20.00</strong> on credit</span></li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Dashboard view: Account Deactivated - hidden on local -->
+    <section data-dashboard-view="account-deactivated" class="hidden" aria-label="Account deactivated">
+      <div class="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 py-12">
+        <div class="max-w-md">
+          <div class="mb-4 text-gray-300">Account deactivated</div>
+          <h2 class="text-lg font-bold text-gray-900 mb-2">Account Deactivated</h2>
+          <p class="text-sm text-gray-600">Your account has been deactivated and is currently unavailable. If you need assistance or believe this is an error, contact our support team.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard view: No Access - hidden on local -->
+    <section data-dashboard-view="no-access" class="hidden" aria-label="No access">
+      <div class="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 py-12">
+        <div class="max-w-md">
+          <h2 class="text-lg font-bold text-gray-900 mb-2">No Access</h2>
+          <p class="text-sm text-gray-600 mb-4">You do not have access to this page.</p>
+          <a href="javascript:globalThis.history.back()" class="inline-flex items-center justify-center bg-(--primary) text-white rounded-md px-4 py-2.5 text-sm font-semibold no-underline hover:opacity-90">Go back</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard view: System Maintenance - hidden on local (visible on platformstyles) -->
+    <section data-dashboard-view="system-maintenance" class="hidden" aria-label="System maintenance">
+      <div class="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 py-12">
+        <div class="max-w-md">
+          <h2 class="text-lg font-bold text-gray-900 mb-2">System Maintenance</h2>
+          <p class="text-sm text-gray-600 mb-4">We're performing scheduled maintenance. Please check back in a few minutes.</p>
+          <a href="#" onclick="globalThis.location.reload(); return false;" class="inline-flex items-center justify-center bg-(--primary) text-white rounded-md px-4 py-2.5 text-sm font-semibold no-underline hover:opacity-90">Refresh</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard view: Live Activity (alternate layout) - hidden on local -->
+    <section data-dashboard-view="live-activity" class="hidden" aria-label="Live activity">
+      <div class="flex flex-col gap-4 py-4 sm:py-6">
+      <div class="flex justify-end">
+        <a href="/lendscore/lenders-portal/find-report" class="inline-flex items-center justify-center bg-(--primary) text-white rounded-md px-4 py-2.5 text-sm font-semibold no-underline hover:opacity-90">Request New Report</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+        <div class="rounded-lg p-4 bg-(--primary-light) border border-gray-200">
+          <p class="text-xs font-semibold text-(--secondary) mb-1">GHS</p>
+          <p class="text-xl font-bold text-gray-900">120,000.00</p>
+          <p class="text-xs text-(--secondary) mb-2">Total Balance</p>
+          <a href="/lendscore/lenders-portal/wallet-topup" class="text-xs font-semibold text-(--primary) no-underline">Top Up</a>
+        </div>
+        <div class="rounded-lg p-4 bg-(--primary-light) border border-gray-200">
+          <p class="text-xs font-semibold text-(--secondary) mb-1">Count</p>
+          <p class="text-xl font-bold text-gray-900">1202</p>
+          <p class="text-xs text-(--secondary)">Credit Report Sent</p>
+        </div>
+        <div class="rounded-lg p-4 bg-(--primary-light) border border-gray-200">
+          <p class="text-xs font-semibold text-(--secondary) mb-1">Count</p>
+          <p class="text-xl font-bold text-gray-900">2234</p>
+          <p class="text-xs text-(--secondary)">Claims & Disputes Made</p>
+        </div>
+      </div>
+      </div>
+    </section>
+  </div>
+</AppLayout>

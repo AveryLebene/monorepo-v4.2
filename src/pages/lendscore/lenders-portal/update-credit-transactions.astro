@@ -1,0 +1,102 @@
+---
+import AppLayout from "../../../layouts/AppLayout.astro";
+import { config } from "../../../projects/lenders-portal/config";
+---
+
+<AppLayout config={config} title="Update Credit Transaction" showNavArrows>
+  <div class="max-w-2xl">
+    <div class="mb-6">
+      <div class="text-sm font-semibold text-gray-500">
+        Update Credit Transaction
+      </div>
+      <div class="text-sm text-gray-400 mt-1">
+        Update the loan status and repayment details for this borrower
+      </div>
+    </div>
+
+    <div class="bg-white rounded-md border border-gray-200 p-6">
+      <!-- Borrower Info Summary -->
+      <div class="flex items-center gap-4 pb-5 mb-5 border-b border-gray-100">
+        <div
+          class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 text-sm font-semibold shrink-0"
+        >
+          BM
+        </div>
+        <div>
+          <div class="text-sm font-semibold text-gray-900">
+            Ben-Aaron Kpakpo Mills-Pappoe
+          </div>
+          <div class="text-xs text-gray-400">050 345 6789 • GHS 5,000.00</div>
+        </div>
+      </div>
+
+      <form class="flex flex-col gap-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-sm font-medium text-gray-700">Loan Status</label>
+            <select
+              class="border border-gray-200 rounded-lg py-2.5 px-4 text-sm text-gray-700 bg-white outline-none focus:border-teal-500 transition-colors"
+            >
+              <option value="active">Active</option>
+              <option value="paid">Fully Paid</option>
+              <option value="defaulted">Defaulted</option>
+              <option value="restructured">Restructured</option>
+            </select>
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label class="text-sm font-medium text-gray-700">Amount Paid</label>
+            <input
+              type="text"
+              class="border border-gray-200 rounded-lg py-2.5 px-4 text-sm text-gray-700 bg-white outline-none focus:border-teal-500 transition-colors"
+              placeholder="GHS 0.00"
+            />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-sm font-medium text-gray-700"
+              >Outstanding Balance</label
+            >
+            <input
+              type="text"
+              class="border border-gray-200 rounded-lg py-2.5 px-4 text-sm text-gray-700 bg-white outline-none focus:border-teal-500 transition-colors"
+              placeholder="GHS 0.00"
+            />
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label class="text-sm font-medium text-gray-700">Payment Date</label
+            >
+            <input
+              type="date"
+              class="border border-gray-200 rounded-lg py-2.5 px-4 text-sm text-gray-700 bg-white outline-none focus:border-teal-500 transition-colors"
+            />
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="text-sm font-medium text-gray-700">Notes</label>
+          <textarea
+            class="border border-gray-200 rounded-lg py-2.5 px-4 text-sm text-gray-700 bg-white outline-none focus:border-teal-500 transition-colors resize-none"
+            rows="3"
+            placeholder="Add any relevant notes..."></textarea>
+        </div>
+
+        <div class="flex items-center gap-3 mt-2">
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center bg-teal-500 text-white rounded-lg px-6 py-2.5 text-sm font-semibold hover:opacity-90 transition-opacity border-none cursor-pointer"
+            >Update Transaction</button
+          >
+          <a
+            href="/lendscore/lenders-portal/report-borrower"
+            class="inline-flex items-center justify-center border border-gray-200 rounded-lg px-6 py-2.5 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition no-underline"
+            >Cancel</a
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</AppLayout>

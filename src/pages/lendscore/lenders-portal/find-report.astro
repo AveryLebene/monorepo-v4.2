@@ -1,0 +1,274 @@
+---
+import AppLayout from "../../../layouts/AppLayout.astro";
+import { config } from "../../../projects/lenders-portal/config";
+---
+
+<AppLayout config={config} title="Find New Report">
+  <div class="text-center mb-8 mt-4">
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">
+      Find Reports For Persons & Companies
+    </h2>
+    <div class="text-sm text-gray-400">
+      Choose a report to purchase from the following options below
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <!-- Row 1: Identity -->
+    <a
+      href="/lendscore/lenders-portal/individual-identity-report"
+      class="bg-gray-100 rounded-md p-6 no-underline text-inherit flex items-start gap-4 hover:bg-gray-200/60 transition cursor-pointer group"
+    >
+      <div
+        class="w-10 h-10 rounded-md bg-amber-100 flex items-center justify-center text-amber-600 shrink-0"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="text-sm font-semibold text-gray-900">
+          Identity report for a person
+        </div>
+        <div class="text-xs text-gray-500 leading-relaxed mt-1">
+          Find and generate a report for a person
+        </div>
+      </div>
+      <svg
+        class="w-5 h-5 text-gray-400 mt-1 shrink-0"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+
+    <a
+      href="/lendscore/lenders-portal/many-identity-report"
+      class="bg-gray-100 rounded-md p-6 no-underline text-inherit flex items-start gap-4 hover:bg-gray-200/60 transition cursor-pointer group"
+    >
+      <div
+        class="w-10 h-10 rounded-md bg-amber-100 flex items-center justify-center text-amber-600 shrink-0"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 00-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 010 7.75"></path>
+        </svg>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="text-sm font-semibold text-gray-900">
+          Identity reports for many people
+        </div>
+        <div class="text-xs text-gray-500 leading-relaxed mt-1">
+          Generate report for many people from .xlsx file
+        </div>
+      </div>
+      <svg
+        class="w-5 h-5 text-gray-400 mt-1 shrink-0"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+
+    <!-- Row 2: Credit -->
+    <a
+      href="/lendscore/lenders-portal/credit-report-search"
+      class="bg-gray-100 rounded-md p-6 no-underline text-inherit flex items-start gap-4 hover:bg-gray-200/60 transition cursor-pointer group"
+    >
+      <div
+        class="w-10 h-10 rounded-md bg-orange-100 flex items-center justify-center text-orange-600 shrink-0"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+          <line x1="2" y1="10" x2="22" y2="10"></line>
+        </svg>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="text-sm font-semibold text-gray-900">
+          Credit report for a person
+        </div>
+        <div class="text-xs text-gray-500 leading-relaxed mt-1">
+          Find and generate a report for a person
+        </div>
+      </div>
+      <svg
+        class="w-5 h-5 text-gray-400 mt-1 shrink-0"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+
+    <a
+      href="/lendscore/lenders-portal/many-credit-report"
+      class="bg-gray-100 rounded-md p-6 no-underline text-inherit flex items-start gap-4 hover:bg-gray-200/60 transition cursor-pointer group"
+    >
+      <div
+        class="w-10 h-10 rounded-md bg-orange-100 flex items-center justify-center text-orange-600 shrink-0"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+          <line x1="2" y1="10" x2="22" y2="10"></line>
+        </svg>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="text-sm font-semibold text-gray-900">
+          Credit reports for many people
+        </div>
+        <div class="text-xs text-gray-500 leading-relaxed mt-1">
+          Generate reports for many people from .xlsx file
+        </div>
+      </div>
+      <svg
+        class="w-5 h-5 text-gray-400 mt-1 shrink-0"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+
+    <!-- Row 3: Business -->
+    <a
+      href="/lendscore/lenders-portal/business-report-search"
+      class="bg-gray-100 rounded-md p-6 no-underline text-inherit flex items-start gap-4 hover:bg-gray-200/60 transition cursor-pointer group"
+    >
+      <div
+        class="w-10 h-10 rounded-md bg-teal-100 flex items-center justify-center text-teal-600 shrink-0"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+          <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"></path>
+        </svg>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="text-sm font-semibold text-gray-900">
+          Credit reports for a business
+        </div>
+        <div class="text-xs text-gray-500 leading-relaxed mt-1">
+          Find and generate a report for a business
+        </div>
+      </div>
+      <svg
+        class="w-5 h-5 text-gray-400 mt-1 shrink-0"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+
+    <a
+      href="/lendscore/lenders-portal/many-business-report"
+      class="bg-gray-100 rounded-md p-6 no-underline text-inherit flex items-start gap-4 hover:bg-gray-200/60 transition cursor-pointer group"
+    >
+      <div
+        class="w-10 h-10 rounded-md bg-teal-100 flex items-center justify-center text-teal-600 shrink-0"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+          <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"></path>
+        </svg>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="text-sm font-semibold text-gray-900">
+          Credit reports for many businesses
+        </div>
+        <div class="text-xs text-gray-500 leading-relaxed mt-1">
+          Generate credit reports for many businesses from .xlsx file
+        </div>
+      </div>
+      <svg
+        class="w-5 h-5 text-gray-400 mt-1 shrink-0"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </a>
+  </div>
+</AppLayout>
