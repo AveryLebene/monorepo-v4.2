@@ -24,7 +24,9 @@ A modular Astro project designed to house multiple independent projects (portals
 
 ## Documentation
 
-For comprehensive documentation following Hubtel's Docs-As-Code (DAC) standards, see [docs/index.md](docs/index.md).
+This repository uses Docs-as-Code documentation under [`docs/`](docs/) (start here: [`docs/index.md`](docs/index.md)).
+
+The `README.md` is still useful for onboarding, but DAC documentation should be updated alongside code changes.
 
 ---
 
@@ -43,6 +45,7 @@ Visit the live projects:
 | Gov Projects             | `/gov-projects/`                                         | Dashboard  |
 | Customer Portal          | `/gov-projects/assemblies/customer-portal/`              | Dashboard  |
 | Inspector Portal         | `/gov-projects/assemblies/inspector-portal/`             | Full Width |
+| Lendscore (Lenders Portal) | `/lendscore/lenders-portal/`                           | Dashboard  |
 
 ---
 
@@ -121,6 +124,10 @@ src/
 │           └── customer-portal/
 │               └── config.ts        #   Extends gov-projects; template: "dashboard"
 │
+│   └── lenders-portal/
+│       ├── config.ts                 #   Lendscore / Lenders Portal config (sidebar footer, icons, profile)
+│       └── lensdcore/                #   (legacy/typo folder; currently unused)
+│
 └── pages/                            # Astro file-based routing (actual page files)
     ├── ma-portal/
     │   ├── index.astro
@@ -132,6 +139,22 @@ src/
             │   └── index.astro
             └── customer-portal/
                 └── index.astro
+    └── lendscore/
+        ├── index.astro
+        └── lenders-portal/
+            ├── index.astro
+            ├── manage.astro
+            ├── bank-uploaded.astro
+            ├── bank-uploaded-details.astro
+            ├── upload-data.astro
+            ├── credit-report.astro
+            ├── credit-transactions.astro
+            └── manage/
+                ├── api-docs.astro
+                ├── api-keys.astro
+                ├── audit-logs.astro
+                ├── bulk-downloads.astro
+                └── employees.astro
 ```
 
 ---
@@ -473,16 +496,65 @@ Larger composed components:
 
 ### `ProjectConfig`
 
+`ProjectConfig` is a typed union that supports both:
+
+- **v4 sidebar/navbar**: prop-driven sidebar + navbar using `navItems`, `branding`, etc.
+- **v5 sidebar/navbar**: `@hubtel/react-ui` v5 components via `v5SidebarProps` / `v5NavbarProps`
+
+The base fields (shared for all variants):
+
 ```typescript
-interface ProjectConfig {
-  name: string;           // Display name (shown in browser tab, sidebar, etc.)
-  basePath: string;       // URL prefix (e.g. "/ma-portal")
-  theme: string;          // Theme key matching [data-theme="..."] in tokens.css
-  branding: ProjectBranding;
-  navItems: NavItem[];
+interface ProjectConfigBase {
+  name: string;
+  basePath: string;
+  /** Theme key — maps to a [data-theme-astro="..."] selector in tokens.css */
+  theme: string;
+  /** v5 theme key — maps to a [data-theme="..."] selector in tokens.css */
+  v5Theme?: string;
   template: "dashboard" | "fullwidth";
-  fonts?: ProjectFonts;   // Optional per-project typography (see Per-Project Fonts)
+
+  fonts?: ProjectFonts;
+
+  userProfile?: UserProfile;
+  navbarTitle?: string;
+  notificationCount?: number;
+  profileDropdownActions?: NavbarDropdownAction[];
 }
+```
+
+Sidebar options:
+
+```typescript
+// V4 sidebar (default) — REQUIRED: navItems + branding
+{
+  sidebarType?: "v4";
+  navItems: NavItem[];
+  branding: ProjectBranding;
+  iconBasePath?: string;
+  sidebarFooter?: string | NavItem[] | null;
+  sidebarFooterBorder?: boolean;
+}
+
+// V5 sidebar — REQUIRED: v5SidebarProps
+{
+  sidebarType: "v5";
+  v5SidebarProps: Record<string, any>;
+  navItems?: NavItem[];
+  branding?: ProjectBranding;
+  iconBasePath?: string;
+  sidebarFooter?: string | NavItem[] | null;
+  sidebarFooterBorder?: boolean;
+}
+```
+
+Navbar options:
+
+```typescript
+// V4 navbar (default)
+{ navbarType?: "v4" }
+
+// V5 navbar
+{ navbarType: "v5"; v5NavbarProps: Record<string, any> }
 ```
 
 ### `ProjectFonts`
@@ -506,6 +578,7 @@ interface NavItem {
   href: string;           // Full path (e.g. "/ma-portal/settings")
   icon?: string;          // Icon identifier (for future use)
   badgeCount?: number;    // Red badge counter (e.g. notification count)
+  badgeColor?: string;    // Badge background color (e.g. "#dc2626" or "var(--accent)")
   children?: NavItem[];   // Nested sub-nav items (for future use)
 }
 ```

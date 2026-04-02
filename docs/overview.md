@@ -4,57 +4,65 @@
 
 ### Why This System Exists
 
-[NEEDS_INPUT: Please describe why this multi-project platform exists and what business need it fulfills]
+This repository provides a modular Astro platform for hosting multiple independent projects (portals, dashboards, tools) within a single codebase, sharing UI components and theming per project via configuration to avoid duplication.
+
+_Source: `README.md`_
 
 ### Problem Statement
 
-[NEEDS_INPUT: What problem does consolidating multiple portals under one codebase solve?]
+Multiple portals/tools often require the same navigation chrome and UI building blocks (sidebar, navbar, buttons, theming). Duplicating these across repositories increases maintenance cost and visual inconsistency.
+
+_Source: `README.md`_
 
 ### Target Users
 
-[NEEDS_INPUT: Who are the primary users? (e.g., internal admins, external customers, partners)]
+- Engineers building new Hubtel portals/dashboards/tools that should share a common UI system and theming approach.
+
+_Source: `README.md`_
 
 ## System Responsibilities
 
 This system is responsible for:
 
-- Hosting multiple independent web applications (portals) under a single deployment _Source: `README.md`_
-- Providing shared UI components (sidebar, navbar, buttons) that are themed per project _Source: `README.md`, `src/components/`_
-- Enabling rapid addition of new projects via configuration-only setup _Source: `README.md`, `src/config/`_
-- Supporting different layout templates (dashboard with sidebar, full-width) per project _Source: `src/config/types.ts`, `src/templates/`_
-- Applying project-specific theming via CSS custom properties _Source: `src/styles/themes/tokens.css`_
+- Providing a shared layout + template system (dashboard/full-width) used by multiple projects.  
+  _Source: `README.md`, `src/layouts/AppLayout.astro`, `src/templates/*`_
+- Providing shared, project-agnostic UI components, themed via CSS custom properties.  
+  _Source: `README.md`, `src/components/`, `src/styles/themes/tokens.css`_
+- Providing a file-based routing structure for multiple projects under `src/pages/`.  
+  _Source: `README.md`, `src/pages/`_
+- Providing per-project configuration under `src/projects/` to drive navigation, branding, and theming.  
+  _Source: `README.md`, `src/projects/`_
 
 ### In Scope
 
-- MA Portal, Gov Projects (assemblies), Lenders Portal, and other projects added via config _Source: `src/projects/`, `src/pages/`_
-- Shared component library (atoms, organisms) _Source: `src/components/`_
-- Theming system (tokens per project) _Source: `src/styles/themes/tokens.css`_
-- Project/sub-project inheritance via `extendConfig()` _Source: `src/config/utils.ts`_
+- Shared UI components and templates
+- Per-project theming and branding via configuration
+- Astro page routing and layout composition for projects hosted in this repo
+
+_Source: `README.md`_
 
 ### Out of Scope
 
-- Backend API services (this is a static/SSR frontend only)
-- Authentication/authorization logic (handled by external systems)
-- Database or server-side persistence
+[NEEDS_INPUT: Confirm whether this repo is intended to include backend APIs, data persistence, or infrastructure components. Current repo evidence indicates a frontend Astro application.]
 
 ## Key Integrations
 
 ### Internal Services
 
-[NEEDS_INPUT: List any internal Hubtel services this frontend integrates with (e.g., API endpoints)]
-
-- Lendscore API: `https://api.lendscore.hubtel.com/v1` referenced in lenders-portal _Source: `src/pages/lendscore/lenders-portal/manage/api-docs.astro`_
+[TODO: Identify internal service integrations (if any). No internal service clients were verified from the files reviewed so far.]
 
 ### External Services
 
-- **@hubtel/react-ui** — Hubtel design system components _Source: `package.json`_
-- **@hubtel/react-icons** — Icon library _Source: `package.json`_
-- **@hubtel/shared-styles** — Shared CSS utilities _Source: `package.json`_
-- External asset URLs for logos (e.g., `https://designs.hubtel.com/v4/`) _Source: `src/projects/ma-portal/config.ts`_
+[TODO: Identify external service integrations (if any).]
 
 ## Service Tier
 
 - **Priority:** [NEEDS_INPUT: Critical / High / Medium / Low]
-- **Business Impact:** [NEEDS_INPUT: Describe impact of downtime]
-- **User Base:** [NEEDS_INPUT: Estimated user count/type]
-- **System Dependencies:** [NEEDS_INPUT: How many downstream systems depend on this?]
+- **Business Impact:** [NEEDS_INPUT: Financial/operational impact of downtime]
+- **User Base:** [NEEDS_INPUT: Who/what relies on this platform in production?]
+- **System Dependencies:** [NEEDS_INPUT: Approximate count of downstream systems/projects depending on this repo]
+
+## External Documentation
+
+[TODO: Add links to briefs/diagrams/meeting notes if/when available]
+

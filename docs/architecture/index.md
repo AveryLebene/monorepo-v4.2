@@ -2,154 +2,134 @@
 
 ## Overall System Structure
 
-The codebase follows a **layered architecture** where each layer has a single responsibility. Data flows downward: pages import AppLayout and the project config, then pass both to AppLayout. AppLayout applies the theme and picks the template (dashboard or fullwidth) from `config.template`. Components never know which project they belong to—they read CSS variables and accept props. _Source: `README.md`, `src/layouts/AppLayout.astro`_
+This is a frontend Astro application organized as a layered system:
+
+- **Pages** under `src/pages/` define file-based routes and compose the app by importing `AppLayout` plus a project config.
+- **Layouts** under `src/layouts/` provide the HTML shell (`BaseLayout.astro`) and the project-aware composition (`AppLayout.astro`).
+- **Templates** under `src/templates/` are React components that define page chrome (dashboard vs full-width).
+- **Components** under `src/components/` are shared, project-agnostic building blocks themed via CSS variables.
+- **Theme tokens** under `src/styles/themes/tokens.css` define per-project CSS custom properties activated by `data-theme-astro`.
+
+_Source: `README.md` (“Architecture Overview”, “Project Structure”), `src/layouts/AppLayout.astro`, `src/layouts/BaseLayout.astro`, `src/styles/themes/tokens.css`_
 
 ## Major Components
 
-### Pages (`src/pages/`)
+### Routing and page composition (`src/pages/`)
 
-Pure content. Astro file-based routing maps URLs to page files. Each page imports AppLayout and the project config, then passes both with content via slot. No per-project Layout files. _Source: `README.md`, `src/pages/`_
+Astro file-based routing maps URL paths to `.astro` files under `src/pages/`.
 
-### App Layout (`src/layouts/AppLayout.astro`)
+_Source: `README.md`, `src/pages/`_
 
-Single layout: reads `config.template` and renders BaseLayout + the matching React template (DashboardTemplate or FullWidthTemplate). Dispatches based on `config.template === "dashboard"` or `"fullwidth"`. _Source: `src/layouts/AppLayout.astro`_
+### App layout (`src/layouts/AppLayout.astro`)
 
-### Base Layout (`src/layouts/BaseLayout.astro`)
+`AppLayout` is the single composition point for all projects: it wraps content in `BaseLayout` and chooses which React template to render based on `config.template` (`dashboard` or `fullwidth`).
 
-Pure HTML shell: `<head>`, styles, `data-theme` attribute. Loads global.css (which loads tokens.css) and sets the theme on `<html>`. _Source: `README.md`_
+_Source: `src/layouts/AppLayout.astro`_
 
-### Templates (`src/templates/`)
+### Base HTML shell (`src/layouts/BaseLayout.astro`)
 
-React components that arrange page structure:
+`BaseLayout` imports global styles, sets `data-theme-astro` (and optionally `data-theme`), and applies font CSS variables. It does not render navigation chrome directly.
 
-- **DashboardTemplate** — Sidebar + scrollable main area _Source: `src/templates/DashboardTemplate.tsx`_
-- **FullWidthTemplate** — No sidebar, centered content _Source: `src/templates/FullWidthTemplate.tsx`_
+_Source: `src/layouts/BaseLayout.astro`, `src/styles/global.css`_
 
-### Components (`src/components/`)
+### React templates (`src/templates/`)
 
-Fully reusable atoms & organisms. Project-agnostic. Themed via CSS custom properties—no hardcoded colors. Organized by atomic design: atoms (Button, BrandLogo, Spinner, SidebarToggle), organisms (Sidebar, Navbar, UserInfo). _Source: `src/components/`, `README.md`_
+- `DashboardTemplate.tsx`: renders sidebar + navbar variants and a scrollable main content area.
+- `FullWidthTemplate.tsx`: renders content without sidebar chrome.
 
-### Config (`src/config/`)
+_Source: `src/templates/DashboardTemplate.tsx`, `src/templates/FullWidthTemplate.tsx`_
 
-- **types.ts** — `ProjectConfig`, `NavItem`, `ProjectBranding`, `TemplateName` _Source: `src/config/types.ts`_
-- **utils.ts** — `getNavWithActive()`, `extendConfig()` for sub-project inheritance _Source: `src/config/utils.ts`_
+### Configuration model (`src/config/types.ts`, `src/projects/**/config.ts`)
 
-### Theme Tokens (`src/styles/themes/tokens.css`)
+Each project defines a `ProjectConfig` which includes routing base path, theme keys, template selection, branding, navigation items, and (optionally) v5 sidebar/navbar props.
 
-CSS custom properties per project, activated by the `data-theme` attribute on `<html>`. Defines sidebar colors, primary, accent, content bg/text, etc. _Source: `src/styles/themes/tokens.css`_
+_Source: `src/config/types.ts`, `src/projects/ma-portal/config.ts`_
+
+### Theming (`src/styles/themes/tokens.css`)
+
+Themes are implemented as CSS custom properties. Each project theme corresponds to a `[data-theme-astro="<theme>"]` selector; components use variables rather than hard-coded colors.
+
+_Source: `src/styles/themes/tokens.css`, `README.md`_
 
 ## Dependencies
 
 ### Internal Dependencies
 
-[NEEDS_INPUT: Other Hubtel services this frontend depends on]
+[TODO: Identify internal Hubtel services this repo depends on, if any.]
 
 ### External Dependencies
 
-| Package | Purpose | Version (approx) |
-|---------|---------|------------------|
-| astro | Static site generator, island architecture | ^5.7.12 |
-| @astrojs/react | React integration | ^4.2.7 |
-| react | UI library | ^19.1.0 |
-| @tailwindcss/vite | Tailwind CSS v4 | ^4.1.6 |
-| tailwindcss | Utility CSS | ^4.1.6 |
-| @hubtel/react-ui | Hubtel design system | ^2.1.2 |
-| @hubtel/react-icons | Icons | ^1.0.4 |
-| @hubtel/shared-styles | Shared styles | ^0.3.0 |
-
-_Source: `package.json`_
+- **Astro** (core framework)  
+  _Source: `package.json`_
+- **React** (template layer via `@astrojs/react`)  
+  _Source: `package.json`, `astro.config.mjs`_
+- **Tailwind CSS** (styling/tooling)  
+  _Source: `package.json`, `astro.config.mjs`_
+- **Hubtel UI packages** (`@hubtel/react-ui`, `@hubtel/shared-styles`, `@hubtel/react-icons`)  
+  _Source: `package.json`, `src/styles/global.css`_
 
 ### Technology Stack
 
-- **Language/Runtime:** JavaScript/TypeScript, Node.js (build) _Source: `package.json`, `tsconfig.json`_
-- **Framework:** Astro 5, React 19 _Source: `package.json`_
-- **Database:** None (static frontend)
-- **Cache:** None
-- **Message Queue:** None
-- **Other:** Tailwind CSS v4, Vite _Source: `astro.config.mjs`_
+- **Language/Runtime:** Node.js (required to run Astro)  
+  _Source: `package.json` scripts_
+- **Framework:** Astro + React integration  
+  _Source: `package.json`, `astro.config.mjs`_
+- **Database:** [VERIFY_WITH_TEAM: No database configuration detected in `package.json`/repo files reviewed so far]  
+- **Cache:** [VERIFY_WITH_TEAM: No cache configuration detected]  
+- **Message Queue:** [VERIFY_WITH_TEAM: No message queue configuration detected]  
+- **Other:** Tailwind CSS, Hubtel UI packages  
+  _Source: `package.json`_
 
 ## Architecture Diagrams
 
 ### System Architecture
 
-```mermaid
-graph TB
-    subgraph "Pages Layer"
-        P1[ma-portal pages]
-        P2[gov-projects pages]
-        P3[lenders-portal pages]
-    end
+:::mermaid
+flowchart TB
+  browser[Browser] --> astroRouter[Astro_Router]
+  astroRouter --> pageAstro[PageAstro_src_pages]
+  pageAstro --> appLayout[AppLayout_src_layouts]
+  appLayout --> baseLayout[BaseLayout_src_layouts]
+  baseLayout --> globalCss[global_css_and_tokens]
+  appLayout --> templateChoice{config_template}
+  templateChoice --> dashboard[DashboardTemplate_React]
+  templateChoice --> fullwidth[FullWidthTemplate_React]
+  dashboard --> sharedComponents[SharedComponents_src_components]
+  fullwidth --> sharedComponents
+  sharedComponents --> cssVars[CSS_Custom_Properties_tokens_css]
+  globalCss --> cssVars
+  pageAstro --> projectConfig[ProjectConfig_src_projects]
+  projectConfig --> templateChoice
+  projectConfig --> baseLayout
+::: 
 
-    subgraph "App Layout"
-        AL[AppLayout.astro]
-    end
+### Component Interactions
 
-    subgraph "Base Layer"
-        BL[BaseLayout.astro]
-        TK[tokens.css]
-    end
-
-    subgraph "Templates"
-        DT[DashboardTemplate]
-        FT[FullWidthTemplate]
-    end
-
-    subgraph "Components"
-        SB[Sidebar]
-        NB[Navbar]
-        A[Atoms]
-    end
-
-    P1 -->|config| AL
-    P2 -->|config| AL
-    P3 -->|config| AL
-    AL --> BL
-    AL --> DT
-    AL --> FT
-    BL --> TK
-    DT --> SB
-    DT --> NB
-    DT --> A
-    FT --> A
-```
-
-### Component Interactions (Page Request)
-
-```mermaid
+:::mermaid
 sequenceDiagram
-    participant User
-    participant Astro
-    participant Page
-    participant AppLayout
-    participant BaseLayout
-    participant Template
-    participant Sidebar
-    participant Content
-
-    User->>Astro: Request /ma-portal/settings
-    Astro->>Page: Match settings.astro
-    Page->>AppLayout: Import AppLayout + config, pass slot
-    AppLayout->>BaseLayout: theme
-    BaseLayout->>BaseLayout: Set data-theme
-    AppLayout->>Template: config.template = dashboard
-    Template->>Sidebar: navItems, pathname
-    Template->>Content: slot (page content)
-    Template-->>User: Rendered HTML
-```
+  participant User as User
+  participant Astro as Astro
+  participant Page as PageAstro
+  participant App as AppLayout
+  participant Base as BaseLayout
+  participant Tpl as ReactTemplate
+  participant Cmp as SharedComponents
+  User->>Astro: GET /some-route
+  Astro->>Page: RouteMatch(src/pages/**)
+  Page->>App: Render(AppLayout, config, props)
+  App->>Base: Wrap(BaseLayout, theme/fonts)
+  App->>Tpl: SelectTemplate(config.template)
+  Tpl->>Cmp: Render(Sidebar/Navbar/Content)
+  Tpl-->>User: HTML+HydratedReact
+:::
 
 ## Data Flow
 
-1. **URL → Page**: Astro file-based routing matches URL to `src/pages/{project}/.../*.astro`.
-2. **Page → AppLayout**: Page imports AppLayout and project config, passes both with title and slot content.
-3. **Config → AppLayout**: Page passes `config` (ProjectConfig) directly to AppLayout.
-4. **AppLayout → Theme**: Sets `data-theme={config.theme}` on `<html>` via BaseLayout.
-5. **AppLayout → Template**: Picks DashboardTemplate or FullWidthTemplate based on `config.template`.
-6. **Template → Components**: Sidebar receives `navItems`, `pathname`, `branding` from config. Components read `var(--sidebar-bg)`, etc. from CSS.
-7. **Config inheritance**: Sub-projects use `extendConfig(parent, overrides)` for shared branding/theme with overridden nav/path. _Source: `src/config/utils.ts`_
+Page-level `.astro` files pass a `ProjectConfig` into `AppLayout`. `AppLayout` selects the template and sets theme keys on the root HTML element via `BaseLayout`. React templates render UI using config + CSS variables (tokens) and pass the `pathname` down to navigation components for active states.
+
+_Source: `README.md` (“Key principle”, “How It All Fits Together”), `src/layouts/AppLayout.astro`, `src/layouts/BaseLayout.astro`, `src/templates/DashboardTemplate.tsx`_
 
 ## Security Considerations
 
-- Static/SSR frontend; no server-side secrets in this repo.
-- [NEEDS_INPUT: Authentication flow — where is it handled? External provider?]
-- [VERIFY_WITH_TEAM: Lendscore API keys — how are they managed? Client-side vs server-side?]
-- External asset URLs (designs.hubtel.com) — ensure CORS/trust for assets.
+[NEEDS_INPUT: Describe any authentication/authorization model, if applicable. No auth mechanism was verified from the files reviewed so far.]
+

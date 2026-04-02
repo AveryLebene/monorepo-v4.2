@@ -4,99 +4,81 @@
 
 ### Expected Performance
 
-- **Build**: Astro builds a static site. Expected build time depends on page count and asset size. _Source: `package.json` scripts_
-- **Dev server**: `npm run dev` starts Vite dev server at `http://localhost:4321`. Hot module replacement (HMR) for fast iteration. _Source: `README.md`, `package.json`_
-- **Preview**: `npm run preview` serves the production build locally for verification. _Source: `package.json`_
+[NEEDS_INPUT: Define expected performance characteristics (TTFB, bundle size budgets, page load targets) and how performance is measured for this platform.]
 
 ### Health Checks
 
-- [NEEDS_INPUT: Production deployment URL and health check endpoint, if any]
-- Dev server: `http://localhost:4321` returns 200 when running.
-- Build: `npm run build` exits 0 on success.
+[VERIFY_WITH_TEAM: This is a frontend Astro app. Confirm if there are any health endpoints (e.g. platform hosting checks) or if health is managed at the hosting layer.]
 
 ### Resource Usage
 
-- Static frontend; no long-running server processes in production (when deployed as static site).
-- [NEEDS_INPUT: Expected CPU/memory for build process and production hosting]
+[NEEDS_INPUT: Provide expected CPU/memory usage for dev server and for production hosting environment.]
 
 ## Failure Modes
 
 ### Common Failure Scenarios
 
-- **Build fails**: Dependency issues, TypeScript errors, or missing env vars. Check `npm run build` output.
-- **Dev server won't start**: Port 4321 in use, or module resolution errors. Check terminal output.
-- **Page 404**: No matching `src/pages/` file for the requested URL. Verify file-based routing.
-- **Broken styles**: Theme not applied if `data-theme` is wrong or token missing in `tokens.css`.
-- **Component errors**: React hydration mismatch if server/client render differs; check `client:load` usage. _Source: Astro/React docs_
+- **Build failures** due to dependency or TypeScript issues.  
+  _Source: `package.json`, `tsconfig.json`_
+- **Runtime UI issues** due to missing/mismatched theme tokens (components fall back to defaults).  
+  _Source: `src/styles/themes/tokens.css`, `src/layouts/BaseLayout.astro`_
 
 ### Degraded Operation
 
-- If external assets (e.g., designs.hubtel.com) are unavailable, logos/images may fail to load.
-- If Lendscore API is down, lenders-portal API-dependent features will fail. _Source: `src/pages/lendscore/lenders-portal/manage/api-docs.astro`_
+[NEEDS_INPUT: Define degraded behavior expectations (e.g. what should still work if some projects/routes fail).]
 
 ## Logging
 
 ### Log Levels
 
-- Astro/Vite dev server: Standard dev output (info, warnings, errors).
-- [NEEDS_INPUT: Production logging strategy if using SSR or custom server]
+[VERIFY_WITH_TEAM: Confirm logging approach. For typical Astro deployments, server logs come from the hosting/runtime; client errors are visible in browser console.]
 
 ### Key Log Patterns
 
-- `[astro]` — Astro-specific messages
-- `[vite]` — Vite/build messages
-- `Error:` / `WARN:` — Build or runtime errors
+[TODO: Add log patterns once logging/observability approach is defined.]
 
 ### Log Location
 
-- Dev: stdout/stderr of the terminal running `npm run dev`
-- Build: stdout/stderr of the terminal running `npm run build`
-- [NEEDS_INPUT: Production log location]
+[NEEDS_INPUT: Where are logs viewed (hosting provider logs, browser error reporting, Sentry, etc.)?]
 
 ## Monitoring and Alerts
 
 ### Metrics
 
-- [NEEDS_INPUT: Key metrics — e.g., page load time, error rate, build duration]
+[NEEDS_INPUT: Define metrics (availability, error rate, Web Vitals, build times).]
 
 ### Dashboards
 
-- [NEEDS_INPUT: Links to monitoring dashboards]
+[TODO: Add links to dashboards (if any).]
 
 ### Alert Thresholds
 
-- [NEEDS_INPUT: When to alert — build failures, deploy failures, uptime]
+[NEEDS_INPUT: Define alert thresholds and paging rules.]
 
 ## Operational Notes
 
 ### On-Call Runbook
 
-1. **Site down**: Check deployment pipeline, CDN/hosting status. Verify build succeeds locally.
-2. **Broken page**: Check recent deploys. Verify route exists in `src/pages/`. Check browser console for JS errors.
-3. **Style/theme broken**: Verify `tokens.css` has the theme. Check `data-theme` on `<html>`.
-4. **API integration failing**: Check external service status (e.g., Lendscore API). Verify CORS and auth if client-side calls.
+[NEEDS_INPUT: Add runbook procedures for support/on-call.]
 
 ### Common Issues and Solutions
 
-| Issue | Solution |
-|-------|----------|
-| Port 4321 in use | Use `--port` flag: `astro dev --port 3000` |
-| Module not found | Run `npm install`, check import paths |
-| Hydration mismatch | Ensure server and client render same content; review `client:load` usage |
-| Theme not applied | Verify `config.theme` matches a selector in `tokens.css` |
+- **Dev server won’t start**: verify dependencies are installed and run `npm install`, then `npm run dev`.  
+  _Source: `README.md`, `package.json`_
+- **Theme looks wrong**: verify the page uses the correct project config and that `config.theme` matches a `[data-theme-astro="..."]` block in `tokens.css`.  
+  _Source: `src/layouts/BaseLayout.astro`, `src/styles/themes/tokens.css`, `src/config/types.ts`_
 
 ### Escalation Path
 
-[NEEDS_INPUT: Who to contact for different severities — e.g., Platform team, Product owner]
+[NEEDS_INPUT: Escalation contacts/process.]
 
 ## Deployment
 
 ### Deployment Process
 
-- [NEEDS_INPUT: CI/CD pipeline, build command, deploy target (e.g., S3, Vercel, Netlify)]
-- Build command: `npm run build` _Source: `package.json`_
-- Output directory: `./dist/` (Astro default) _Source: `README.md`_
+[NEEDS_INPUT: Describe how this repo is deployed (CI/CD, environment promotion, hosting target).]
 
 ### Rollback Procedure
 
-[NEEDS_INPUT: How to roll back a failed deployment]
+[NEEDS_INPUT: Describe rollback procedure for failed deployments.]
+
