@@ -1,0 +1,66 @@
+/* @projects/styles — customer-portal (extends assemblies) */
+/*
+ * Design tokens — base / fallback values.
+ * Every token used by any theme should appear here with a sensible default.
+ * Themes only need to override the tokens they change — the rest falls
+ * through from :root.
+ *
+ * Consumers: import a theme file (e.g. @projects/styles/ma-portal.css)
+ * which bundles this base automatically.
+ */
+:root {
+  /* ── Typography ─────────────────────────────────────────── */
+  --font-body: system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-body);
+
+  /* ── Sidebar ────────────────────────────────────────────── */
+  --sidebar-width: 260px;
+  --sidebar-bg: #082e4d;
+  --sidebar-active-bg: #010810;
+  --sidebar-text: #ffffff;
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.1);
+  --sidebar-border: rgba(255, 255, 255, 0.15);
+  --sidebar-badge-bg: #dc2626;
+  --sidebar-badge-text: #ffffff;
+
+  /* ── Navbar ─────────────────────────────────────────────── */
+  --navbar-bg: #ffffff;
+  --navbar-text: #111827;
+  --navbar-border: #e5e7eb;
+  --navbar-badge-bg: #dc2626;
+  --navbar-badge-text: #ffffff;
+  --navbar-dropdown-bg: #ffffff;
+  --navbar-dropdown-header-bg: #eff6ff;
+  --navbar-dropdown-border: #e5e7eb;
+  --navbar-dropdown-item-hover-bg: #f3f4f6;
+
+  /* ── Brand ──────────────────────────────────────────────── */
+  --primary: #082e4d;
+  --deep-primary: #010810;
+  --primary-light: #1a5a8a;
+  --accent: #f59e0b;
+  --secondary: #374151;
+
+  /* ── Semantic ───────────────────────────────────────────── */
+  --success: #10b981;
+  --disable: #d1d5db;
+
+  /* ── Content ────────────────────────────────────────────── */
+  --content-bg: #f9fafb;
+  --content-text: #111827;
+}
+
+[data-project-theme="customer-portal"] {
+  --sidebar-bg: #4c1d95;
+  --sidebar-active-bg: #2e1065;
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.12);
+  --navbar-dropdown-header-bg: #f5f3ff;
+  --navbar-dropdown-item-hover-bg: #faf5ff;
+  --primary: #4c1d95;
+  --deep-primary: #2e1065;
+  --primary-light: #6d28d9;
+  --accent: #a78bfa;
+  --secondary: #6d28d9;
+  --content-bg: #faf5ff;
+  --content-text: #3b0764;
+}

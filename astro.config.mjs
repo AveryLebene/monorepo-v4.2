@@ -7,10 +7,13 @@ import tailwindcss from '@tailwindcss/vite';
 
 import react from '@astrojs/react';
 
+import validateProjects from './src/integrations/validate-projects.ts';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
+  base: '/projects',
   vite: {
     plugins: [tailwindcss()],
     resolve: {
@@ -20,5 +23,5 @@ export default defineConfig({
     },
   },
 
-  integrations: [react()]
+  integrations: [react(), validateProjects()]
 });

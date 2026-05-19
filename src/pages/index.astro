@@ -1,0 +1,40 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { countAllProjects, projectGroups } from "@/config/projects";
+
+const totalProjects = countAllProjects(projectGroups);
+---
+
+<BaseLayout
+  title="Hubtel Designs Portal"
+  description="All Hubtel design prototypes in one place."
+>
+  <div class="h-dvh flex flex-col w-full bg-white  items-center justify-center  text-(--content-text)">
+    <header class="border-b w-full flex-1 border-black/5 ">
+      <div class="mx-auto text-center max-w-7xl px-6 py-12 sm:py-16">
+        <p
+          class="text-xs hidden font-semibold uppercase tracking-[0.18em] text-(--accent)"
+        >
+          Hubtel Designs Portal
+        </p>
+        <h1 class="mt-2 text-3xl font-semibold sm:text-4xl text-(--primary)">
+          Welcome to v5
+        </h1>
+        <p class="mt-3 mx-auto text-center max-w-2xl text-xl text-gray-400">
+          If you know why you're here, navigate accordingly.
+        </p>
+      </div>
+    </header>
+
+    <footer class="w-full border-black/5 bg-white">
+      <div
+        class="grid w-full grid-cols-3 items-center px-6 py-6 text-xs text-gray-500"
+      >
+        <span aria-hidden="true" />
+        <span class="text-center">Designs Portal</span>
+        <span class="text-right">©{new Date().getFullYear()} Hubtel</span>
+
+      </div>
+    </footer>
+  </div>
+</BaseLayout>

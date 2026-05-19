@@ -1,0 +1,32 @@
+{
+  "theme": "lendscore",
+  "tokens": {
+    "font-body": "system-ui, -apple-system, sans-serif",
+    "sidebar-width": "220px",
+    "sidebar-bg": "#082e4d",
+    "sidebar-active-bg": "#010810",
+    "sidebar-text": "#ffffff",
+    "sidebar-hover-bg": "rgba(255, 255, 255, 0.08)",
+    "sidebar-border": "rgba(255, 255, 255, 0.12)",
+    "sidebar-badge-bg": "#dc2626",
+    "sidebar-badge-text": "#ffffff",
+    "navbar-bg": "#ffffff",
+    "navbar-text": "#111827",
+    "navbar-border": "#e5e7eb",
+    "navbar-badge-bg": "#dc2626",
+    "navbar-badge-text": "#ffffff",
+    "navbar-dropdown-bg": "#ffffff",
+    "navbar-dropdown-header-bg": "#eef7fa",
+    "navbar-dropdown-border": "#e5e7eb",
+    "navbar-dropdown-item-hover-bg": "#f3f4f6",
+    "primary": "#306d8a",
+    "deep-primary": "#26576E",
+    "primary-light": "#EAF3F8",
+    "accent": "#00aeb5",
+    "secondary": "#3D5263",
+    "success": "#00B27C",
+    "disable": "#C3D0DB",
+    "content-bg": "#f8f9fa",
+    "content-text": "#111827"
+  }
+}

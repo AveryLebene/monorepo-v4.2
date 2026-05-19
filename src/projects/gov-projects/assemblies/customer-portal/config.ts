@@ -1,5 +1,16 @@
-import { extendConfig } from "../../../../config/utils";
-import { config as govConfig } from "../config";
+import { extendConfig } from "@/config/utils";
+import type { ProjectMeta } from "@/config/types";
+import { config as govConfig } from "@/projects/gov-projects/assemblies/config";
+
+export const meta: ProjectMeta = {
+  id: "customer-portal",
+  group: "gov-projects",
+  parentId: "assemblies",
+  description:
+    "Citizen-facing portal to submit and track service requests.",
+  tags: ["Citizens", "Dashboard"],
+  order: 1,
+};
 
 /**
  * Customer Portal — a sub-project under Gov Projects > Assemblies.
@@ -8,7 +19,7 @@ import { config as govConfig } from "../config";
  */
 export const config = extendConfig(govConfig, {
   name: "Customer Portal",
-  basePath: "/gov-projects/assemblies/customer-portal",
+  basePath: "/projects/gov-projects/assemblies/customer-portal",
   theme: "customer-portal",
   template: "dashboard",
   branding: {
@@ -16,18 +27,18 @@ export const config = extendConfig(govConfig, {
     logoLabel: "Customer Projects",
   },
   navItems: [
-    { label: "Home", href: "/gov-projects/assemblies/customer-portal/" },
+    { label: "Home", href: "/projects/gov-projects/assemblies/customer-portal/" },
     {
       label: "My Requests",
-      href: "/gov-projects/assemblies/customer-portal/requests",
+      href: "/projects/gov-projects/assemblies/customer-portal/requests",
     },
     {
       label: "Track Status",
-      href: "/gov-projects/assemblies/customer-portal/track",
+      href: "/projects/gov-projects/assemblies/customer-portal/track",
     },
     {
       label: "Support",
-      href: "/gov-projects/assemblies/customer-portal/support",
+      href: "/projects/gov-projects/assemblies/customer-portal/support",
     },
   ],
   sidebarFooter: "Copyright © 2026 Gov Projects",

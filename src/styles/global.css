@@ -2,7 +2,7 @@
 @source "../../node_modules/@hubtel/react-ui";
 
 @import "./base/reset.css";
-@import "./themes/tokens.css";
+@import "@projects/styles/all.css";
 
 body {
   font-family: var(--font-body);

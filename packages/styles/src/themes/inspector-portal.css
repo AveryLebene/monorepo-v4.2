@@ -1,0 +1,26 @@
+/*
+ * Inspector Portal — overrides on top of the Assemblies group.
+ * Only tokens that differ from assemblies.css go here.
+ * group: assemblies
+ */
+[data-project-theme="inspector-portal"] {
+  /* ── Sidebar ── */
+  --sidebar-bg: #1e3a5f;
+  --sidebar-active-bg: #0f1f33;
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.1);
+
+  /* ── Navbar ── */
+  --navbar-dropdown-header-bg: #eff6ff;
+  --navbar-dropdown-item-hover-bg: #f8fafc;
+
+  /* ── Brand ── */
+  --primary: #1e3a5f;
+  --deep-primary: #0f1f33;
+  --primary-light: #2d5a8a;
+  --accent: #3b82f6;
+  --secondary: #475569;
+
+  /* ── Content ── */
+  --content-bg: #f8fafc;
+  --content-text: #1e293b;
+}

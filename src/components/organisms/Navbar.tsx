@@ -1,7 +1,7 @@
 import React from "react";
-import IconWithBadge from "../molecules/IconWithBadge";
-import UserProfileNavItem from "./UserProfileNavItem";
-import type { UserProfile, NavbarDropdownAction } from "../../config/types";
+import IconWithBadge from "@/components/molecules/IconWithBadge";
+import UserProfileNavItem from "@/components/organisms/UserProfileNavItem";
+import type { UserProfile, NavbarDropdownAction } from "@/config/types";
 
 function BellIcon() {
   return (

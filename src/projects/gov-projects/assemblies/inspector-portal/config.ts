@@ -1,5 +1,16 @@
-import { extendConfig } from "../../../../config/utils";
-import { config as govConfig } from "../config";
+import { extendConfig } from "@/config/utils";
+import type { ProjectMeta } from "@/config/types";
+import { config as govConfig } from "@/projects/gov-projects/assemblies/config";
+
+export const meta: ProjectMeta = {
+  id: "inspector-portal",
+  group: "gov-projects",
+  parentId: "assemblies",
+  description:
+    "Field inspector workspace — inspections, schedules, and reports.",
+  tags: ["Field Ops", "Full-width"],
+  order: 2,
+};
 
 /**
  * Inspector Portal — a sub-project under Gov Projects > Assemblies.
@@ -7,22 +18,23 @@ import { config as govConfig } from "../config";
  */
 export const config = extendConfig(govConfig, {
   name: "Inspector Portal",
-  basePath: "/gov-projects/assemblies/inspector-portal",
+  basePath: "/projects/gov-projects/assemblies/inspector-portal",
   theme: "inspector-portal",
+  v5Theme: "black",
   template: "fullwidth",
   navItems: [
-    { label: "Dashboard", href: "/gov-projects/assemblies/inspector-portal/" },
+    { label: "Dashboard", href: "/projects/gov-projects/assemblies/inspector-portal/" },
     {
       label: "Inspections",
-      href: "/gov-projects/assemblies/inspector-portal/inspections",
+      href: "/projects/gov-projects/assemblies/inspector-portal/inspections",
     },
     {
       label: "Schedule",
-      href: "/gov-projects/assemblies/inspector-portal/schedule",
+      href: "/projects/gov-projects/assemblies/inspector-portal/schedule",
     },
     {
       label: "Reports",
-      href: "/gov-projects/assemblies/inspector-portal/reports",
+      href: "/projects/gov-projects/assemblies/inspector-portal/reports",
     },
   ],
 });

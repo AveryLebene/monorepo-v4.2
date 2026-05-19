@@ -1,0 +1,25 @@
+/*
+ * Customer Portal — overrides on top of the Assemblies group.
+ * Only tokens that differ from assemblies.css go here.
+ * group: assemblies
+ */
+[data-project-theme="customer-portal"] {
+  /* ── Sidebar ── */
+  --sidebar-bg: #4c1d95;
+  --sidebar-active-bg: #2e1065;
+
+  /* ── Navbar ── */
+  --navbar-dropdown-header-bg: #f5f3ff;
+  --navbar-dropdown-item-hover-bg: #faf5ff;
+
+  /* ── Brand ── */
+  --primary: #4c1d95;
+  --deep-primary: #2e1065;
+  --primary-light: #6d28d9;
+  --accent: #a78bfa;
+  --secondary: #6d28d9;
+
+  /* ── Content ── */
+  --content-bg: #faf5ff;
+  --content-text: #3b0764;
+}

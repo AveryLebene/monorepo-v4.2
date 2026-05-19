@@ -60,9 +60,9 @@ export interface ProjectConfigBase {
   name: string;
   /** Base URL path (e.g. "/ma-portal") */
   basePath: string;
-  /** Theme key — maps to a [data-theme-astro="..."] selector in tokens.css */
+  /** Theme key — maps to a [data-project-theme="..."] selector in @projects/styles */
   theme: string;
-  /** v5 theme key — maps to a [data-theme="..."] selector in tokens.css */
+  /** v5 theme key — powers @hubtel/react-ui v5 components (set via data-v5-theme) */
   v5Theme?: string;
   /** Which template to render: dashboard (sidebar+main), fullwidth (no sidebar) */
   template: TemplateName;
@@ -127,3 +127,36 @@ interface NavbarV5Config {
 export type ProjectConfig = ProjectConfigBase &
   (SidebarV4Config | SidebarV5Config) &
   (NavbarV4Config | NavbarV5Config);
+
+/* ─── Registry metadata ───────────────────────────────────── */
+
+/**
+ * Discovery metadata exported alongside each project's `config`.
+ * Used by the auto-registration in `src/config/projects.ts` to build
+ * `projectGroups` without hand-maintained import lists.
+ */
+export interface ProjectMeta {
+  /** Unique project id (e.g. "lenders-portal", "assemblies"). */
+  id: string;
+  /** Group this project belongs to — must match an id in `projectGroupsMeta`. */
+  group: string;
+  /** If this is a sub-project, the parent project's id (must be in the same group). */
+  parentId?: string;
+  /** Landing-page description for this project card. */
+  description: string;
+  /** Tags shown on the project card (e.g. ["Dashboard", "Reports"]). */
+  tags?: string[];
+  /** URL to navigate to. Defaults to `config.basePath` (with trailing slash). */
+  href?: string;
+  /** Sort order within the group (lower = first). Defaults to 0. */
+  order?: number;
+}
+
+/** Top-level group metadata; one entry per group id used by project `meta.group`. */
+export interface ProjectGroupMeta {
+  id: string;
+  label: string;
+  description?: string;
+  /** Sort order across groups (lower = first). Defaults to 0. */
+  order?: number;
+}

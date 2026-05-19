@@ -1,4 +1,12 @@
-import type { ProjectConfig } from "../../../config/types";
+import type { ProjectConfig, ProjectMeta } from "@/config/types";
+
+export const meta: ProjectMeta = {
+  id: "assemblies",
+  group: "gov-projects",
+  description:
+    "Top-level government workspace. Coordinates assemblies, reports, and settings across sub-portals.",
+  tags: ["Dashboard", "Parent"],
+};
 
 /**
  * Gov Projects — top-level project.
@@ -7,18 +15,19 @@ import type { ProjectConfig } from "../../../config/types";
  */
 export const config: ProjectConfig = {
   name: "Assemblies",
-  basePath: "/gov-projects/assemblies",
+  basePath: "/projects/gov-projects/assemblies",
   theme: "assemblies",
-  v5Theme: "green",
+  v5Theme: "black",
   template: "dashboard",
   branding: {
     logo: "https://designs.hubtel.com/v4//lendscore//assets/images/images/albrim-logo.svg",
     logoLabel: "Assemblies",
   },
   navItems: [
-    { label: "Overview", href: "/gov-projects/assemblies/" },
-    { label: "Assemblies", href: "/gov-projects/assemblies" },
-    { label: "Reports", href: "/gov-projects/assemblies/reports" },
-    { label: "Settings", href: "/gov-projects/assemblies/settings" },
+    { label: "Overview", href: "/projects/gov-projects/assemblies/" },
+    { label: "Business Operating Permit", href: "/projects/gov-projects/assemblies/backoffice/bop" },
+    { label: "Assemblies", href: "/projects/gov-projects/assemblies" },
+    { label: "Reports", href: "/projects/gov-projects/assemblies/reports" },
+    { label: "Settings", href: "/projects/gov-projects/assemblies/settings" },
   ],
 };

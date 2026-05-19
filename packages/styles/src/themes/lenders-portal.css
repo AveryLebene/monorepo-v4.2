@@ -1,0 +1,9 @@
+/*
+ * Lenders Portal — overrides on top of the Lendscore group.
+ * Only tokens that differ from lendscore.css go here.
+ * group: lendscore
+ */
+[data-project-theme="lenders-portal"] {
+  --sidebar-bg: var(--primary);
+  --sidebar-active-bg: var(--deep-primary);
+}

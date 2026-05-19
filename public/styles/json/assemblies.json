@@ -1,0 +1,32 @@
+{
+  "theme": "assemblies",
+  "tokens": {
+    "font-body": "system-ui, -apple-system, sans-serif",
+    "sidebar-width": "260px",
+    "sidebar-bg": "#1a472a",
+    "sidebar-active-bg": "#0d2915",
+    "sidebar-text": "#ffffff",
+    "sidebar-hover-bg": "rgba(255, 255, 255, 0.12)",
+    "sidebar-border": "rgba(255, 255, 255, 0.15)",
+    "sidebar-badge-bg": "#dc2626",
+    "sidebar-badge-text": "#ffffff",
+    "navbar-bg": "#ffffff",
+    "navbar-text": "#111827",
+    "navbar-border": "#e5e7eb",
+    "navbar-badge-bg": "#dc2626",
+    "navbar-badge-text": "#ffffff",
+    "navbar-dropdown-bg": "#ffffff",
+    "navbar-dropdown-header-bg": "#ecfdf5",
+    "navbar-dropdown-border": "#e5e7eb",
+    "navbar-dropdown-item-hover-bg": "#f0fdf4",
+    "primary": "#1a472a",
+    "deep-primary": "#0d2915",
+    "primary-light": "#2d6b42",
+    "accent": "#10b981",
+    "secondary": "#2d6b42",
+    "success": "#10b981",
+    "disable": "#d1d5db",
+    "content-bg": "#f0fdf4",
+    "content-text": "#14532d"
+  }
+}

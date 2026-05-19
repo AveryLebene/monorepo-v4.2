@@ -1,0 +1,31 @@
+/*
+ * Lendscore group tokens — shared brand for all projects under Lendscore.
+ *
+ * Import directly:  @projects/styles/lendscore.css
+ * Or use a specific project (e.g. lenders-portal) which inherits from here.
+ *
+ * Only override what differs from base.css.
+ */
+[data-project-theme="lendscore"] {
+  /* ── Sidebar ── */
+  --sidebar-width: 220px;
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.08);
+  --sidebar-border: rgba(255, 255, 255, 0.12);
+
+  /* ── Navbar ── */
+  --navbar-dropdown-header-bg: #eef7fa;
+
+  /* ── Brand ── */
+  --primary: #306d8a;
+  --deep-primary: #26576E;
+  --primary-light: #EAF3F8;
+  --accent: #00aeb5;
+  --secondary: #3D5263;
+
+  /* ── Semantic ── */
+  --success: #00B27C;
+  --disable: #C3D0DB;
+
+  /* ── Content ── */
+  --content-bg: #f8f9fa;
+}

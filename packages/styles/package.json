@@ -1,0 +1,31 @@
+{
+  "name": "@projects/styles",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Project styles — base CSS, theme variables, and resets per project",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "node scripts/build.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./global.css": "./dist/global.css",
+    "./base.css": "./dist/base.css",
+    "./all.css": "./dist/all.css",
+    "./lendscore.css": "./dist/lendscore.css",
+    "./lendscore.json": "./dist/json/lendscore.json",
+    "./ma-portal.css": "./dist/ma-portal.css",
+    "./assemblies.css": "./dist/assemblies.css",
+    "./inspector-portal.css": "./dist/inspector-portal.css",
+    "./customer-portal.css": "./dist/customer-portal.css",
+    "./lenders-portal.css": "./dist/lenders-portal.css",
+    "./ma-portal.json": "./dist/json/ma-portal.json",
+    "./assemblies.json": "./dist/json/assemblies.json",
+    "./inspector-portal.json": "./dist/json/inspector-portal.json",
+    "./customer-portal.json": "./dist/json/customer-portal.json",
+    "./lenders-portal.json": "./dist/json/lenders-portal.json",
+    "./base.json": "./dist/json/base.json"
+  }
+}

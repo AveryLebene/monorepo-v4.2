@@ -1,0 +1,16 @@
+{
+  "name": "@projects/assemblies",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Assembly portal pages — React JSX matching Figma designs, ready to copy and add functionality",
+  "license": "UNLICENSED",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./bop": "./src/pages/BOP.tsx"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  }
+}

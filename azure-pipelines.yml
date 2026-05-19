@@ -1,0 +1,36 @@
+
+resources:
+  repositories:
+    - repository: QualityChecksRepo
+      type: git
+      name: Back-End/Hubtel.CodeQuality.Pipelines
+      ref: master
+
+trigger:
+  - master
+  - dev
+  - staging
+
+schedules:
+  - cron: "0 0 * * *"
+    displayName: DailyMidnight
+    branches:
+      include:
+      - master
+      - dev
+      - staging
+      
+variables:
+  - group: HubtelDockerBuildVariables
+  - name: buildConfiguration
+    value: 'Release'
+
+extends:
+  template: frontend-repos/main-staged.yml@QualityChecksRepo
+  parameters:
+    ArtefactName: -hubtel-designs-portal-tailwind
+    NodeVersion: 20.x
+    SonarQubeProjectKey: UX_and_Marketing_Hubtel-Designs-Portal-Tailwind_a220fd22-7278-4c7e-bd9d-bb59c71f6b51
+    ProjectName: Hubtel-Designs-Portal-Tailwind
+    SonarQubeServiceConnection: Hubtel_SonarQube_Azure-UX and Marketing
+    SourceDirectory: "src"

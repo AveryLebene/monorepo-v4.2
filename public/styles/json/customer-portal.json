@@ -1,0 +1,32 @@
+{
+  "theme": "customer-portal",
+  "tokens": {
+    "font-body": "system-ui, -apple-system, sans-serif",
+    "sidebar-width": "260px",
+    "sidebar-bg": "#4c1d95",
+    "sidebar-active-bg": "#2e1065",
+    "sidebar-text": "#ffffff",
+    "sidebar-hover-bg": "rgba(255, 255, 255, 0.12)",
+    "sidebar-border": "rgba(255, 255, 255, 0.15)",
+    "sidebar-badge-bg": "#dc2626",
+    "sidebar-badge-text": "#ffffff",
+    "navbar-bg": "#ffffff",
+    "navbar-text": "#111827",
+    "navbar-border": "#e5e7eb",
+    "navbar-badge-bg": "#dc2626",
+    "navbar-badge-text": "#ffffff",
+    "navbar-dropdown-bg": "#ffffff",
+    "navbar-dropdown-header-bg": "#f5f3ff",
+    "navbar-dropdown-border": "#e5e7eb",
+    "navbar-dropdown-item-hover-bg": "#faf5ff",
+    "primary": "#4c1d95",
+    "deep-primary": "#2e1065",
+    "primary-light": "#6d28d9",
+    "accent": "#a78bfa",
+    "secondary": "#6d28d9",
+    "success": "#10b981",
+    "disable": "#d1d5db",
+    "content-bg": "#faf5ff",
+    "content-text": "#3b0764"
+  }
+}

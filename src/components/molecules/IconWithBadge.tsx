@@ -1,5 +1,5 @@
 import React from "react";
-import Badge from "../atoms/Badge";
+import Badge from "@/components/atoms/Badge";
 
 interface IconWithBadgeProps {
   icon: React.ReactNode;

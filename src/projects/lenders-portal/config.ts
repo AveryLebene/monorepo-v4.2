@@ -1,6 +1,15 @@
-import type { ProjectConfig } from "../../config/types";
+import type { ProjectConfig, ProjectMeta } from "@/config/types";
 
-const basePath = "/lendscore/lenders-portal";
+const basePath = "/projects/lendscore/lenders-portal";
+
+export const meta: ProjectMeta = {
+  id: "lenders-portal",
+  group: "lendscore",
+  description:
+    "Pull credit reports, log loans, manage borrowers and dishonoured cheques.",
+  tags: ["Dashboard", "Reports"],
+  href: "/projects/lendscore/",
+};
 
 export const config: ProjectConfig = {
   name: "Lendscore",
@@ -11,53 +20,53 @@ export const config: ProjectConfig = {
     logo: `${basePath}/svg/logo.svg`,
     logoLabel: "Deals 2D Car Service",
   },
-  iconBasePath: "/lendscore/lenders-portal/nav-icons",
+  iconBasePath: "/projects/lendscore/lenders-portal/nav-icons",
   navItems: [
     {
       label: "Dashboard",
-      href: "/lendscore/lenders-portal/",
+      href: "/projects/lendscore/lenders-portal/",
       icon: "dashboard",
     },
     {
       label: "Find New Report",
-      href: "/lendscore/lenders-portal/find-report",
+      href: "/projects/lendscore/lenders-portal/find-report",
       icon: "find-report",
     },
     {
       label: "Past Reports",
-      href: "/lendscore/lenders-portal/credit-report",
+      href: "/projects/lendscore/lenders-portal/credit-report",
       icon: "credit-report",
     },
     {
       label: "Report A Loan",
-      href: "/lendscore/lenders-portal/report-borrower",
+      href: "/projects/lendscore/lenders-portal/report-borrower",
       icon: "report-borrower",
     },
     {
       label: "New Loan Seekers",
-      href: "/lendscore/lenders-portal/request-credit",
+      href: "/projects/lendscore/lenders-portal/request-credit",
       icon: "request-credit",
     },
     {
       label: "New Loans / Debt",
-      href: "/lendscore/lenders-portal/bank-uploaded",
+      href: "/projects/lendscore/lenders-portal/bank-uploaded",
       icon: "bank",
     },
     {
       label: "Dishonoured Cheques",
-      href: "/lendscore/lenders-portal/upload-data",
+      href: "/projects/lendscore/lenders-portal/upload-data",
       icon: "upload-data",
     },
     {
       label: "Judgement Debt",
-      href: "/lendscore/lenders-portal/judgement-debt",
+      href: "/projects/lendscore/lenders-portal/judgement-debt",
       icon: "judgement",
     },
   ],
   sidebarFooter: [
     {
       label: "Manage",
-      href: "/lendscore/lenders-portal/manage",
+      href: "/projects/lendscore/lenders-portal/manage",
       icon: "manage",
     },
   ],
@@ -71,8 +80,8 @@ export const config: ProjectConfig = {
   profileDropdownActions: [
     {
       label: "Switch business",
-      href: "/lendscore/lenders-portal/select-business",
+      href: "/projects/lendscore/lenders-portal/select-business",
     },
-    { label: "Logout", href: "/lendscore/lenders-portal/" },
+    { label: "Logout", href: "/projects/lendscore/lenders-portal/" },
   ],
 };

@@ -1,0 +1,32 @@
+{
+  "theme": "inspector-portal",
+  "tokens": {
+    "font-body": "system-ui, -apple-system, sans-serif",
+    "sidebar-width": "260px",
+    "sidebar-bg": "#1e3a5f",
+    "sidebar-active-bg": "#0f1f33",
+    "sidebar-text": "#ffffff",
+    "sidebar-hover-bg": "rgba(255, 255, 255, 0.1)",
+    "sidebar-border": "rgba(255, 255, 255, 0.15)",
+    "sidebar-badge-bg": "#dc2626",
+    "sidebar-badge-text": "#ffffff",
+    "navbar-bg": "#ffffff",
+    "navbar-text": "#111827",
+    "navbar-border": "#e5e7eb",
+    "navbar-badge-bg": "#dc2626",
+    "navbar-badge-text": "#ffffff",
+    "navbar-dropdown-bg": "#ffffff",
+    "navbar-dropdown-header-bg": "#eff6ff",
+    "navbar-dropdown-border": "#e5e7eb",
+    "navbar-dropdown-item-hover-bg": "#f8fafc",
+    "primary": "#1e3a5f",
+    "deep-primary": "#0f1f33",
+    "primary-light": "#2d5a8a",
+    "accent": "#3b82f6",
+    "secondary": "#475569",
+    "success": "#10b981",
+    "disable": "#d1d5db",
+    "content-bg": "#f8fafc",
+    "content-text": "#1e293b"
+  }
+}

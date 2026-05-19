@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Avatar from "../atoms/Avatar";
-import UserInfo from "../molecules/UserInfo";
-import Dropdown from "../molecules/Dropdown";
-import DropdownMenuItem from "../molecules/DropdownMenuItem";
-import type { UserProfile, NavbarDropdownAction } from "../../config/types";
+import Avatar from "@/components/atoms/Avatar";
+import UserInfo from "@/components/molecules/UserInfo";
+import Dropdown from "@/components/molecules/Dropdown";
+import DropdownMenuItem from "@/components/molecules/DropdownMenuItem";
+import type { UserProfile, NavbarDropdownAction } from "@/config/types";
 
 function getInitials(name: string): string {
   const parts = name.trim().split(/\s+/);

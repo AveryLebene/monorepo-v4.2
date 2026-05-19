@@ -65,7 +65,7 @@
 
 - **Dev server won’t start**: verify dependencies are installed and run `npm install`, then `npm run dev`.  
   _Source: `README.md`, `package.json`_
-- **Theme looks wrong**: verify the page uses the correct project config and that `config.theme` matches a `[data-theme-astro="..."]` block in `tokens.css`.  
+- **Theme looks wrong**: verify the page uses the correct project config and that `config.theme` matches a `[data-theme="..."]` block in `@projects/styles`.  
   _Source: `src/layouts/BaseLayout.astro`, `src/styles/themes/tokens.css`, `src/config/types.ts`_
 
 ### Escalation Path

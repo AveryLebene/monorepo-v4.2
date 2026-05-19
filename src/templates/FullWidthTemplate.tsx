@@ -1,5 +1,5 @@
 import React from "react";
-import type { ProjectConfig } from "../config/types";
+import type { ProjectConfig } from "@/config/types";
 
 interface FullWidthTemplateProps {
   children: React.ReactNode;

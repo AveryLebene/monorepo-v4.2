@@ -1,0 +1,156 @@
+/* @projects/styles — ma-portal */
+/*
+ * Design tokens — base / fallback values.
+ * Every token used by any theme should appear here with a sensible default.
+ * Themes only need to override the tokens they change — the rest falls
+ * through from :root.
+ *
+ * Consumers: import a theme file (e.g. @projects/styles/ma-portal.css)
+ * which bundles this base automatically.
+ */
+:root {
+  /* ── Typography ─────────────────────────────────────────── */
+  --font-body: system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-body);
+
+  /* ── Sidebar ────────────────────────────────────────────── */
+  --sidebar-width: 260px;
+  --sidebar-bg: #082e4d;
+  --sidebar-active-bg: #010810;
+  --sidebar-text: #ffffff;
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.1);
+  --sidebar-border: rgba(255, 255, 255, 0.15);
+  --sidebar-badge-bg: #dc2626;
+  --sidebar-badge-text: #ffffff;
+
+  /* ── Navbar ─────────────────────────────────────────────── */
+  --navbar-bg: #ffffff;
+  --navbar-text: #111827;
+  --navbar-border: #e5e7eb;
+  --navbar-badge-bg: #dc2626;
+  --navbar-badge-text: #ffffff;
+  --navbar-dropdown-bg: #ffffff;
+  --navbar-dropdown-header-bg: #eff6ff;
+  --navbar-dropdown-border: #e5e7eb;
+  --navbar-dropdown-item-hover-bg: #f3f4f6;
+
+  /* ── Brand ──────────────────────────────────────────────── */
+  --primary: #082e4d;
+  --deep-primary: #010810;
+  --primary-light: #1a5a8a;
+  --accent: #f59e0b;
+  --secondary: #374151;
+
+  /* ── Semantic ───────────────────────────────────────────── */
+  --success: #10b981;
+  --disable: #d1d5db;
+
+  /* ── Content ────────────────────────────────────────────── */
+  --content-bg: #f9fafb;
+  --content-text: #111827;
+}
+
+[data-project-theme="ma-portal"] {
+  --sidebar-width: 260px;
+  --sidebar-bg: #082e4d;
+  --sidebar-active-bg: #010810;
+  --sidebar-text: #ffffff;
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.1);
+  --sidebar-border: rgba(255, 255, 255, 0.15);
+  --sidebar-badge-bg: #dc2626;
+  --sidebar-badge-text: #ffffff;
+  --navbar-bg: #ffffff;
+  --navbar-text: #111827;
+  --navbar-border: #e5e7eb;
+  --navbar-badge-bg: #dc2626;
+  --navbar-badge-text: #ffffff;
+  --navbar-dropdown-bg: #ffffff;
+  --navbar-dropdown-header-bg: #eff6ff;
+  --navbar-dropdown-border: #e5e7eb;
+  --navbar-dropdown-item-hover-bg: #f3f4f6;
+  --primary: #082e4d;
+  --deep-primary: #010810;
+  --primary-light: #1a5a8a;
+  --accent: #f59e0b;
+  --secondary: #374151;
+  --success: #10b981;
+  --disable: #d1d5db;
+  --content-bg: #f9fafb;
+  --content-text: #111827;
+  --default: var(--hbt-blue);
+  --brand-secondary: var(--hbt-teal);
+  --brand-tertiary: var(--hbt-crimson);
+  --accent-primary-default: var(--hbt-blue);
+  --accent-primary-hover: var(--hbt-blue-hover);
+  --accent-primary-press: var(--hbt-blue-press);
+  --accent-secondary-default: var(--ext-neutral-300);
+  --accent-secondary-hover: var(--ext-neutral-400);
+  --accent-secondary-press: var(--ext-neutral-500);
+  --accent-tertiary-default: var(--ext-blue-50);
+  --accent-tertiary-hover: var(--ext-blue-100);
+  --accent-tertiary-press: var(--ext-blue-200);
+  --accent-danger-default: var(--ext-red-500);
+  --accent-danger-hover: var(--ext-red-600);
+  --accent-danger-press: var(--ext-red-700);
+  --accent-disable-default: var(--ext-neutral-100);
+  --accent-disable-hover: var(--ext-neutral-200);
+  --accent-disable-press: var(--ext-neutral-300);
+  --bg-default-white: var(--ext-neutral-50);
+  --bg-default-hover: var(--ext-neutral-100);
+  --bg-default-press: var(--ext-neutral-200);
+  --bg-primary: var(--ext-neutral-200);
+  --bg-secondary: var(--ext-neutral-100);
+  --bg-secondary-hover: var(--ext-neutral-200);
+  --bg-secondary-press: var(--ext-neutral-300);
+  --bg-disable: var(--ext-neutral-100);
+  --bg-disable-hover: var(--ext-neutral-200);
+  --bg-disable-press: var(--ext-neutral-300);
+  --bg-info: var(--ext-blue-500);
+  --bg-info-secondary: var(--ext-blue-50);
+  --bg-warning: var(--ext-orange-500);
+  --bg-warning-secondary: var(--ext-orange-50);
+  --bg-success: var(--ext-springgreen-700);
+  --bg-success-secondary: var(--ext-springgreen-50);
+  --bg-danger-default: var(--ext-red-500);
+  --bg-danger-default-hover: var(--ext-red-600);
+  --bg-danger-default-press: var(--ext-red-700);
+  --bg-danger-secondary: var(--ext-red-50);
+  --bg-danger-secondary-hover: var(--ext-red-100);
+  --bg-danger-secondary-press: var(--ext-red-200);
+  --text-onbrand: var(--ext-neutral-50);
+  --text-onbrand-secondary: var(--hbt-blue-hover);
+  --text-onbrand-tertiary: var(--ext-neutral-50);
+  --text-accent: var(--accent-primary-default);
+  --text-accent-secondary: var(--accent-secondary-default);
+  --text-default: var(--ext-neutral-900);
+  --text-secondary: var(--ext-neutral-800);
+  --text-disable: var(--ext-neutral-500);
+  --text-info: var(--ext-blue-500);
+  --text-warning: var(--ext-orange-500);
+  --text-success: var(--ext-springgreen-700);
+  --text-danger: var(--ext-red-500);
+  --text-placeholder: var(--ext-neutral-600);
+  --icon-onbrand-primary: var(--ext-neutral-50);
+  --icon-onbrand-secondary: var(--hbt-blue-hover);
+  --icon-onbrand-tertiary: var(--ext-neutral-50);
+  --icon-accent-primary: var(--accent-primary-default);
+  --icon-accent-secondary: var(--ext-neutral-500);
+  --icon-default: var(--ext-neutral-900);
+  --icon-secondary: var(--ext-neutral-600);
+  --icon-disable: var(--ext-neutral-400);
+  --icon-info: var(--ext-blue-500);
+  --icon-warning: var(--ext-orange-500);
+  --icon-success: var(--ext-springgreen-700);
+  --icon-danger: var(--ext-red-500);
+  --border-primary: var(--accent-primary-default);
+  --border-secondary: var(--ext-neutral-300);
+  --border-default: var(--ext-neutral-500);
+  --border-disable: var(--ext-neutral-400);
+  --border-info: var(--ext-blue-500);
+  --border-warning: var(--ext-orange-500);
+  --border-success: var(--ext-springgreen-700);
+  --border-danger: var(--ext-red-500);
+  --overlay-light: 1 5 8 / 20%;
+  --overlay-medium: 1 5 8 / 60%;
+  --focus: var(--ext-teal-50);
+}

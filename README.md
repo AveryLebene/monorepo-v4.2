@@ -2,6 +2,8 @@
 
 A modular Astro project designed to house multiple independent projects (portals, dashboards, tools) under a single codebase. Every shared component — sidebar, navbar, buttons, etc. — is built once and themed per project via configuration. No duplication.
 
+Projects are **auto-discovered** from `src/projects/**/config.ts` and **validated at build time** against pages and theme tokens.
+
 ## Table of Contents
 
 - [Documentation](#documentation)
@@ -9,6 +11,7 @@ A modular Astro project designed to house multiple independent projects (portals
 - [Architecture Overview](#architecture-overview)
 - [Project Structure](#project-structure)
 - [How It All Fits Together](#how-it-all-fits-together)
+- [Auto-Registration & Validation](#auto-registration--validation)
 - [Step-by-Step: Add a New Project](#step-by-step-add-a-new-project)
 - [Step-by-Step: Add a Sub-Project](#step-by-step-add-a-sub-project)
 - [Theming](#theming)
@@ -17,6 +20,7 @@ A modular Astro project designed to house multiple independent projects (portals
 - [Creating a New Template](#creating-a-new-template)
 - [Shared Components](#shared-components)
 - [Configuration Reference](#configuration-reference)
+- [Import Conventions](#import-conventions)
 - [Commands](#commands)
 - [FAQ](#faq)
 
@@ -33,19 +37,23 @@ The `README.md` is still useful for onboarding, but DAC documentation should be 
 ## Quick Start
 
 ```bash
-npm install
-npm run dev        # → http://localhost:4321
+pnpm install
+pnpm dev          # → http://localhost:4321/projects/
 ```
+
+> The app is served under a `/projects` base path (configured in `astro.config.mjs`). All project URLs below include it.
 
 Visit the live projects:
 
-| Project                  | URL                                                      | Template   |
-| :----------------------- | :------------------------------------------------------- | :--------- |
-| MA Portal                | `/ma-portal/`                                            | Dashboard  |
-| Gov Projects             | `/gov-projects/`                                         | Dashboard  |
-| Customer Portal          | `/gov-projects/assemblies/customer-portal/`              | Dashboard  |
-| Inspector Portal         | `/gov-projects/assemblies/inspector-portal/`             | Full Width |
-| Lendscore (Lenders Portal) | `/lendscore/lenders-portal/`                           | Dashboard  |
+| Project                    | URL                                                       | Template   |
+| :------------------------- | :-------------------------------------------------------- | :--------- |
+| MA Portal                  | `/projects/ma-portal/`                                    | Dashboard  |
+| Assemblies (Gov Projects)  | `/projects/gov-projects/assemblies/`                      | Dashboard  |
+| Customer Portal            | `/projects/gov-projects/assemblies/customer-portal/`      | Dashboard  |
+| Inspector Portal           | `/projects/gov-projects/assemblies/inspector-portal/`     | Full Width |
+| Lendscore (Lenders Portal) | `/projects/lendscore/lenders-portal/`                     | Dashboard  |
+
+The landing page at `/projects/` is built from the auto-discovered project list.
 
 ---
 
@@ -56,26 +64,36 @@ The codebase follows a **layered architecture** where each layer has a single re
 ```
 ┌─────────────────────────────────────────────────────────┐
 │  PAGES  (src/pages/)                                    │
-│  Pure content. Import AppLayout + project config.      │
+│  Pure content. Import AppLayout + project config.       │
 ├─────────────────────────────────────────────────────────┤
 │  APP LAYOUT  (src/layouts/AppLayout.astro)              │
 │  Single layout: reads config.template and renders       │
 │  BaseLayout + the matching React template.              │
 ├─────────────────────────────────────────────────────────┤
 │  BASE LAYOUT  (src/layouts/BaseLayout.astro)            │
-│  Pure HTML shell: <head>, styles, data-theme, fonts.     │
+│  Pure HTML shell: <head>, styles, data-theme,     │
+│  fonts.                                                 │
 ├─────────────────────────────────────────────────────────┤
 │  TEMPLATES  (src/templates/)                            │
 │  React components that arrange the page structure       │
 │  (sidebar + main, full width, etc.)                     │
 ├─────────────────────────────────────────────────────────┤
 │  COMPONENTS  (src/components/)                          │
-│  Fully reusable atoms & organisms. Project-agnostic.    │
+│  Fully reusable atoms / molecules / organisms.          │
 │  Themed via CSS custom properties — no hardcoded colors.│
 ├─────────────────────────────────────────────────────────┤
 │  THEME TOKENS  (src/styles/themes/tokens.css)           │
 │  CSS custom properties per project, activated by the    │
-│  data-theme attribute on <html>.                        │
+│  data-theme attribute on <html>.                  │
+├─────────────────────────────────────────────────────────┤
+│  PROJECT REGISTRY  (src/config/)                        │
+│  projects.ts auto-discovers src/projects/**/config.ts.  │
+│  groups.ts lists top-level groups. types.ts defines     │
+│  ProjectConfig + ProjectMeta.                           │
+├─────────────────────────────────────────────────────────┤
+│  VALIDATION  (src/integrations/validate-projects.ts)    │
+│  Astro integration that checks theme/page/nav drift     │
+│  on every dev start and `astro build`.                  │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -87,9 +105,14 @@ The codebase follows a **layered architecture** where each layer has a single re
 
 ```
 src/
-├── config/                           # Shared types & utilities
-│   ├── types.ts                      #   ProjectConfig, NavItem, ProjectBranding
-│   └── utils.ts                      #   getNavWithActive(), extendConfig()
+├── config/                           # Shared types, utilities & registry
+│   ├── types.ts                      #   ProjectConfig, ProjectMeta, NavItem, ...
+│   ├── utils.ts                      #   getNavWithActive(), extendConfig()
+│   ├── groups.ts                     #   Static list of top-level project groups
+│   └── projects.ts                   #   Auto-discovered project registry (glob)
+│
+├── integrations/
+│   └── validate-projects.ts          # Astro integration: build-time validator
 │
 ├── styles/
 │   ├── global.css                    # Imports Tailwind + reset + tokens
@@ -98,85 +121,85 @@ src/
 │
 ├── components/                       # Shared, project-agnostic components
 │   ├── atoms/                        #   Small building blocks
-│   │   ├── BrandLogo.tsx             #     Logo + label
-│   │   ├── Button.tsx                #     Generic button
-│   │   ├── SidebarToggle.tsx         #     Mobile hamburger toggle
-│   │   └── Spinner.tsx               #     Loading spinner
+│   │   ├── Avatar.tsx
+│   │   ├── Badge.tsx
+│   │   ├── BrandLogo.tsx
+│   │   ├── Button.tsx
+│   │   ├── SidebarToggle.tsx
+│   │   └── Spinner.tsx
+│   ├── molecules/                    #   Composed atoms
+│   │   ├── Dropdown.tsx
+│   │   ├── DropdownMenuItem.tsx
+│   │   ├── IconWithBadge.tsx
+│   │   └── UserInfo.tsx
 │   └── organisms/                    #   Larger composed components
-│       └── Sidebar.tsx               #     Sidebar — fully driven by props + CSS vars
+│       ├── Navbar.tsx                #     v4 navbar (CSS-var themed)
+│       ├── NavbarV5.tsx              #     @hubtel/react-ui wrapper
+│       ├── Sidebar.tsx               #     v4 sidebar (CSS-var themed)
+│       ├── SidebarV5.tsx             #     @hubtel/react-ui wrapper
+│       └── UserProfileNavItem.tsx
 │
 ├── templates/                        # React page shells
-│   ├── DashboardTemplate.tsx         #   Sidebar + scrollable main area
+│   ├── DashboardTemplate.tsx         #   Sidebar + navbar + scrollable main
 │   └── FullWidthTemplate.tsx         #   No sidebar, centered content
 │
 ├── layouts/                          # Astro layouts (HTML wrappers)
-│   ├── BaseLayout.astro              #   HTML shell: <head>, <body>, data-theme
+│   ├── BaseLayout.astro              #   HTML shell + data-theme
 │   └── AppLayout.astro               #   BaseLayout + template from config.template
 │
-├── projects/                         # Per-project configuration
+├── projects/                         # Per-project configuration (auto-discovered)
 │   ├── ma-portal/
-│   │   └── config.ts                 #   Nav items, theme, branding, template
+│   │   └── config.ts                 #   exports { config, meta }
+│   ├── lenders-portal/
+│   │   └── config.ts                 #   exports { config, meta }
 │   └── gov-projects/
 │       └── assemblies/
-│           ├── config.ts             #   Assemblies root config
-│           ├── inspector-portal/
-│           │   └── config.ts         #   Extends gov-projects; template: "fullwidth"
-│           └── customer-portal/
-│               └── config.ts        #   Extends gov-projects; template: "dashboard"
+│           ├── config.ts             #   parent: { config, meta }
+│           ├── customer-portal/
+│           │   └── config.ts         #   sub-project (extendConfig + parentId)
+│           └── inspector-portal/
+│               └── config.ts         #   sub-project (extendConfig + parentId)
 │
-│   └── lenders-portal/
-│       ├── config.ts                 #   Lendscore / Lenders Portal config (sidebar footer, icons, profile)
-│       └── lensdcore/                #   (legacy/typo folder; currently unused)
-│
-└── pages/                            # Astro file-based routing (actual page files)
+└── pages/                            # Astro file-based routing
+    ├── index.astro                   # Landing page (uses auto-discovered groups)
     ├── ma-portal/
     │   ├── index.astro
     │   └── settings.astro
-    └── gov-projects/
-        ├── index.astro
-        └── assemblies/
-            ├── inspector-portal/
-            │   └── index.astro
-            └── customer-portal/
-                └── index.astro
+    ├── gov-projects/
+    │   └── assemblies/
+    │       ├── index.astro
+    │       ├── customer-portal/index.astro
+    │       └── inspector-portal/index.astro
     └── lendscore/
         ├── index.astro
         └── lenders-portal/
             ├── index.astro
             ├── manage.astro
-            ├── bank-uploaded.astro
-            ├── bank-uploaded-details.astro
-            ├── upload-data.astro
-            ├── credit-report.astro
-            ├── credit-transactions.astro
-            └── manage/
-                ├── api-docs.astro
-                ├── api-keys.astro
-                ├── audit-logs.astro
-                ├── bulk-downloads.astro
-                └── employees.astro
+            ├── manage/                # subroutes (api-docs, api-keys, ...)
+            └── ... (~27 pages)
 ```
 
 ---
 
 ## How It All Fits Together
 
-Here's what happens when a user visits `/ma-portal/settings`:
+Here's what happens when a user visits `/projects/ma-portal/settings`:
 
 ```
 1. Astro matches → src/pages/ma-portal/settings.astro
 2. That page imports AppLayout and the MA Portal config
 3. Page passes config to → src/layouts/AppLayout.astro
 4. AppLayout wraps with → src/layouts/BaseLayout.astro
-     → sets <html data-theme="ma-portal">
+     → sets <html data-theme="ma-portal" data-theme="blue">
      → loads global.css (which loads tokens.css)
      → reads config.template ("dashboard") and renders DashboardTemplate with client:load
 5. DashboardTemplate (React) renders:
-     → Sidebar  (reads --sidebar-bg, --sidebar-text, etc. from CSS vars)
+     → Sidebar / SidebarV5  (reads --sidebar-bg, --sidebar-text, etc.)
+     → Navbar  / NavbarV5
      → Main content area (the page's <slot /> content)
 ```
 
-The page file itself (optionally using the `@/` path alias):
+The page file itself (always uses the `@/` path alias):
 
 ```astro
 ---
@@ -191,38 +214,118 @@ import { config } from "@/projects/ma-portal/config";
 
 ---
 
+## Auto-Registration & Validation
+
+The platform uses **two integrations** to keep the project list and configs honest without manual bookkeeping.
+
+### Auto-discovery
+
+`src/config/projects.ts` discovers every project at build time via Vite's `import.meta.glob`:
+
+```ts
+const projectModules = import.meta.glob<ProjectModule>(
+  "/src/projects/**/config.ts",
+  { eager: true },
+);
+```
+
+Each `config.ts` MUST export two things:
+
+| Export   | Type            | Purpose                                              |
+| :------- | :-------------- | :--------------------------------------------------- |
+| `config` | `ProjectConfig` | Drives layout, theme, nav, branding (used at runtime) |
+| `meta`   | `ProjectMeta`   | Registry data — id, group, parentId, description, tags |
+
+Projects are then grouped by `meta.group` (matched against `src/config/groups.ts`) and parent/child hierarchies are built from `meta.parentId`. **No manual edits to `projects.ts` are needed** when adding a project.
+
+Missing exports, unknown groups, or unresolved parent ids produce warnings in the dev console — not crashes.
+
+### Build-time validation
+
+`src/integrations/validate-projects.ts` is wired into `astro.config.mjs`. On every dev start and `astro build`, it scans the source tree and reports drift:
+
+| Check        | What it catches                                                                              |
+| :----------- | :------------------------------------------------------------------------------------------- |
+| `theme`      | A project sets `theme: "foo"` but tokens.css has no `[data-theme="foo"]` block         |
+| `basePath`   | A project's `basePath` has no matching page under `src/pages/`                               |
+| Nav `href`s  | A nav item links to a page that doesn't exist (skips empty strings and external URLs)        |
+
+Example output when running `pnpm dev`:
+
+```
+[validate-projects] 2 issues found:
+  ⚠ src/projects/ma-portal/config.ts: nav href "/projects/ma-portal/help" has no matching page under src/pages/
+  ⚠ src/projects/foo/config.ts: theme "foo" has no [data-theme="foo"] block in tokens.css
+```
+
+To make warnings hard-fail the build, pass an option in `astro.config.mjs`:
+
+```ts
+integrations: [react(), validateProjects({ failOnError: true })],
+```
+
+---
+
 ## Step-by-Step: Add a New Project
 
 Let's say you're adding a project called **"Payments Hub"**.
 
-### 1. Create the project config
+> Remember: the app is served under `/projects` (set by `astro.config.mjs` `base`). All in-app links must include that prefix.
+
+### 1. Register the group (if it doesn't exist yet)
+
+If the project belongs to an existing group (e.g. `lendscore`, `education`), skip this step. Otherwise add it to `src/config/groups.ts`:
+
+```typescript
+export const projectGroupsMeta: ProjectGroupMeta[] = [
+  // ...
+  {
+    id: "payments",
+    label: "Payments",
+    description: "Money movement tooling.",
+    order: 4,
+  },
+];
+```
+
+### 2. Create the project config (with `meta` for auto-registration)
 
 Create `src/projects/payments-hub/config.ts`:
 
 ```typescript
-import type { ProjectConfig } from "../../config/types";
+import type { ProjectConfig, ProjectMeta } from "@/config/types";
+
+export const meta: ProjectMeta = {
+  id: "payments-hub",
+  group: "payments",
+  description: "Payouts, transactions, and settlements in one view.",
+  tags: ["Dashboard"],
+  // href defaults to config.basePath + "/" — override only if different
+};
 
 export const config: ProjectConfig = {
   name: "Payments Hub",
-  basePath: "/payments-hub",
+  basePath: "/projects/payments-hub",
   theme: "payments-hub",
   template: "dashboard",
   branding: {
-    logo: "/images/payments-logo.svg",
+    logo: "/projects/payments-hub/logo.svg",
     logoLabel: "Payments Hub",
   },
   navItems: [
-    { label: "Overview", href: "/payments-hub/" },
-    { label: "Transactions", href: "/payments-hub/transactions" },
-    { label: "Settlements", href: "/payments-hub/settlements" },
-    { label: "Settings", href: "/payments-hub/settings" },
+    { label: "Overview",     href: "/projects/payments-hub/" },
+    { label: "Transactions", href: "/projects/payments-hub/transactions" },
+    { label: "Settlements",  href: "/projects/payments-hub/settlements" },
+    { label: "Settings",     href: "/projects/payments-hub/settings" },
   ],
 };
 ```
 
-### 2. Add a theme
+**You do NOT need to edit `src/config/projects.ts`** — the file is glob-driven and will pick this up automatically.
 
-Add a block to `src/styles/themes/tokens.css`:
+### 3. Add a theme
+
+Add a block to `src/styles/themes/tokens.css` (use the **`data-theme`** attribute, not `data-theme`):
 
 ```css
 [data-theme="payments-hub"] {
@@ -241,14 +344,14 @@ Add a block to `src/styles/themes/tokens.css`:
 }
 ```
 
-### 3. Create pages
+### 4. Create pages
 
 Create `src/pages/payments-hub/index.astro`:
 
 ```astro
 ---
-import AppLayout from "../../layouts/AppLayout.astro";
-import { config } from "../../projects/payments-hub/config";
+import AppLayout from "@/layouts/AppLayout.astro";
+import { config } from "@/projects/payments-hub/config";
 ---
 
 <AppLayout config={config} title="Overview">
@@ -257,30 +360,50 @@ import { config } from "../../projects/payments-hub/config";
 </AppLayout>
 ```
 
-That's it. No per-project Layout file needed. The sidebar, theming, active nav states, and responsive behavior all work automatically.
+### 5. Run `pnpm dev`
+
+The validator will tell you immediately if anything is off:
+
+```
+[validate-projects] all configs OK
+```
+
+If you forgot a page for a nav href, or your theme key doesn't match a tokens block, you'll see a warning pointing at the offending file.
+
+That's it. No per-project Layout file needed. The sidebar, theming, active nav states, responsive behavior, and landing-page card all work automatically.
 
 ---
 
 ## Step-by-Step: Add a Sub-Project
 
-Sub-projects inherit from a parent using `extendConfig()`. They get the parent's branding by default but can override anything.
+Sub-projects inherit from a parent using `extendConfig()`. They appear as children of the parent on the landing page when their `meta.parentId` points at the parent.
 
 ### Example: Adding "Merchant Portal" under Payments Hub
 
 Create `src/projects/payments-hub/merchant-portal/config.ts`:
 
 ```typescript
-import { extendConfig } from "../../../config/utils";
-import { config as parentConfig } from "../config";
+import { extendConfig } from "@/config/utils";
+import type { ProjectMeta } from "@/config/types";
+import { config as parentConfig } from "@/projects/payments-hub/config";
+
+export const meta: ProjectMeta = {
+  id: "merchant-portal",
+  group: "payments",         // same group as the parent
+  parentId: "payments-hub",  // parent's meta.id
+  description: "Merchant-facing payouts and API keys.",
+  tags: ["Dashboard"],
+  order: 1,
+};
 
 export const config = extendConfig(parentConfig, {
   name: "Merchant Portal",
-  basePath: "/payments-hub/merchant-portal",
-  theme: "payments-hub",  // same theme as parent, or use a different one
+  basePath: "/projects/payments-hub/merchant-portal",
+  theme: "payments-hub", // same theme as parent, or use a different one
   navItems: [
-    { label: "Dashboard", href: "/payments-hub/merchant-portal/" },
-    { label: "Payouts", href: "/payments-hub/merchant-portal/payouts" },
-    { label: "API Keys", href: "/payments-hub/merchant-portal/api-keys" },
+    { label: "Dashboard", href: "/projects/payments-hub/merchant-portal/" },
+    { label: "Payouts",   href: "/projects/payments-hub/merchant-portal/payouts" },
+    { label: "API Keys",  href: "/projects/payments-hub/merchant-portal/api-keys" },
   ],
 });
 ```
@@ -288,8 +411,9 @@ export const config = extendConfig(parentConfig, {
 `extendConfig()` does a shallow merge, meaning:
 - `name`, `basePath`, `navItems`, `theme`, `template` — overridden by whatever you pass
 - `branding` — shallow-merged (parent logo/label used unless you explicitly override)
+- `fonts` — fully replaced when set (no inheritance)
 
-Then create page files that import AppLayout and the sub-project config (same pattern as top-level projects).
+Then create page files that import AppLayout and the sub-project config (same pattern as top-level projects). The validator will warn if any nav href doesn't have a matching page.
 
 ---
 
@@ -303,6 +427,8 @@ Themes are powered by **CSS custom properties** defined in `src/styles/themes/to
 2. `BaseLayout.astro` sets `<html data-theme="ma-portal">`
 3. CSS selectors like `[data-theme="ma-portal"]` activate that theme's tokens
 4. Components reference tokens with `var(--sidebar-bg)`, `var(--primary)`, etc.
+
+> **Two theme attributes:** `data-theme` is the platform's own token system. `data-theme` is set separately from `config.v5Theme` and powers `@hubtel/react-ui` v5 components (e.g. `data-theme="blue"`). Use them independently.
 
 ### Available tokens
 
@@ -352,8 +478,8 @@ Fonts are applied as CSS custom properties (`--font-body`, `--font-heading`) on 
 // In inline styles (best for dynamic theme values)
 <div style={{ backgroundColor: "var(--primary)" }}>...</div>
 
-// In Tailwind arbitrary values
-<div className="bg-[var(--primary)] text-[var(--content-text)]">...</div>
+// In Tailwind v4 shorthand (preferred)
+<div className="bg-(--primary) text-(--content-text)">...</div>
 ```
 
 ---
@@ -401,7 +527,7 @@ Create `src/templates/NavbarTemplate.tsx`:
 
 ```tsx
 import React from "react";
-import type { ProjectConfig } from "../config/types";
+import type { ProjectConfig } from "@/config/types";
 
 interface NavbarTemplateProps {
   children: React.ReactNode;
@@ -444,7 +570,7 @@ export default function NavbarTemplate({
 In `src/layouts/AppLayout.astro`, import the new template and add a conditional branch:
 
 ```astro
-import NavbarTemplate from "../templates/NavbarTemplate.tsx";
+import NavbarTemplate from "@/templates/NavbarTemplate.tsx";
 // ... existing code ...
 
 {config.template === "navbar" && (
@@ -462,27 +588,37 @@ Set `template: "navbar"` in the project's `config.ts`. Pages already import AppL
 
 ## Shared Components
 
-All components live in `src/components/` and are organized by atomic design:
+All components live in `src/components/` and are organized by atomic design.
 
 ### Atoms (`src/components/atoms/`)
 
-Small, single-purpose building blocks:
+| Component       | Description                              |
+| :-------------- | :--------------------------------------- |
+| `Avatar`        | Round avatar with image or initials fallback |
+| `Badge`         | Numeric pill (notification counts, etc.) |
+| `BrandLogo`     | Logo image + optional text label         |
+| `Button`        | Generic button (variants, loading state) |
+| `SidebarToggle` | Mobile hamburger toggle                  |
+| `Spinner`       | Loading indicator                        |
 
-| Component         | Props                                                   | Description                |
-| :---------------- | :------------------------------------------------------ | :------------------------- |
-| `BrandLogo`       | `imgSrc`, `label?`, `direction?`, `width?`, `height?`   | Logo image + optional text |
-| `Button`          | `label`, `onClick`, `variant?`, `size?`, `loading?`, etc. | Generic button           |
-| `SidebarToggle`   | `onClick`                                               | Hamburger menu button      |
-| `Spinner`         | —                                                       | Loading indicator          |
+### Molecules (`src/components/molecules/`)
+
+| Component          | Description                                       |
+| :----------------- | :------------------------------------------------ |
+| `Dropdown`         | Generic dropdown shell with controlled open state |
+| `DropdownMenuItem` | Item inside a dropdown (link or button)           |
+| `IconWithBadge`    | Icon button/link with optional notification badge |
+| `UserInfo`         | Name + designation block                          |
 
 ### Organisms (`src/components/organisms/`)
 
-Larger composed components:
-
-| Component  | Props                                        | Description                              |
-| :--------- | :------------------------------------------- | :--------------------------------------- |
-| `Sidebar`  | `isOpen`, `navItems`, `pathname`, `branding`, etc. | Full sidebar with nav, branding, theming |
-| `Navbar`   | —                                            | Top navbar (used by DashboardTemplate)   |
+| Component             | Description                                                  |
+| :-------------------- | :----------------------------------------------------------- |
+| `Sidebar`             | v4 sidebar — themed via CSS variables, driven by props       |
+| `SidebarV5`           | Thin wrapper around `@hubtel/react-ui` v5 sidebar            |
+| `Navbar`              | v4 navbar — bell icon, profile dropdown                      |
+| `NavbarV5`            | Thin wrapper around `@hubtel/react-ui` v5 navigation header  |
+| `UserProfileNavItem`  | Avatar + name + dropdown menu (used inside Navbar)           |
 
 ### Rules for shared components
 
@@ -507,7 +643,7 @@ The base fields (shared for all variants):
 interface ProjectConfigBase {
   name: string;
   basePath: string;
-  /** Theme key — maps to a [data-theme-astro="..."] selector in tokens.css */
+  /** Theme key — maps to a [data-theme="..."] selector in tokens.css */
   theme: string;
   /** v5 theme key — maps to a [data-theme="..."] selector in tokens.css */
   v5Theme?: string;
@@ -594,6 +730,35 @@ interface ProjectBranding {
 }
 ```
 
+### `ProjectMeta`
+
+Discovery metadata that each project's `config.ts` exports alongside `config`. It powers the auto-registered `projectGroups` and the landing page.
+
+```typescript
+interface ProjectMeta {
+  id: string;          // Unique within the group, e.g. "lenders-portal"
+  group: string;       // Must match an entry in src/config/groups.ts
+  parentId?: string;   // For sub-projects: the parent's meta.id (same group)
+  description: string; // Shown on the landing-page card
+  tags?: string[];     // Optional pills on the card
+  href?: string;       // Defaults to config.basePath + "/"
+  order?: number;      // Sort order within the group (default 0)
+}
+```
+
+### `ProjectGroupMeta`
+
+Static group registration in `src/config/groups.ts`.
+
+```typescript
+interface ProjectGroupMeta {
+  id: string;          // Referenced by ProjectMeta.group
+  label: string;       // Display label on the landing page
+  description?: string;
+  order?: number;      // Sort order across groups (default 0)
+}
+```
+
 ### `extendConfig(parent, overrides)`
 
 Creates a child config by merging a parent with overrides. Branding is shallow-merged (you can override just `logoLabel` without losing the parent's `logo`). Fonts fully replace the parent when set — no inheritance.
@@ -612,14 +777,34 @@ const childConfig = extendConfig(parentConfig, {
 
 ---
 
+## Import Conventions
+
+The project uses the `@/` path alias (mapped to `src/` in both `tsconfig.json` and `astro.config.mjs`) for **every** internal import. Relative `../../` imports are not used anywhere in `src/`.
+
+```ts
+// ✅ Good — works from any depth
+import AppLayout from "@/layouts/AppLayout.astro";
+import { config } from "@/projects/lenders-portal/config";
+import type { ProjectConfig } from "@/config/types";
+
+// ❌ Avoid
+import AppLayout from "../../layouts/AppLayout.astro";
+```
+
+External package imports (`react`, `@hubtel/react-ui/*`, etc.) keep their bare-specifier form.
+
+---
+
 ## Commands
 
-| Command              | Action                                         |
-| :------------------- | :--------------------------------------------- |
-| `npm install`        | Install dependencies                           |
-| `npm run dev`        | Start dev server at `localhost:4321`            |
-| `npm run build`      | Build production site to `./dist/`              |
-| `npm run preview`    | Preview production build locally                |
+| Command           | Action                                          |
+| :---------------- | :---------------------------------------------- |
+| `pnpm install`    | Install dependencies                            |
+| `pnpm dev`        | Start dev server at `localhost:4321/projects/`  |
+| `pnpm build`      | Build production site to `./dist/`              |
+| `pnpm preview`    | Preview production build locally                |
+
+The dev/build commands also run the **project validator** (`src/integrations/validate-projects.ts`) and print any drift between configs, pages, and theme tokens.
 
 ---
 
@@ -628,6 +813,18 @@ const childConfig = extendConfig(parentConfig, {
 ### Do I have to create a project layout for every project?
 
 No. Pages import AppLayout and the project config directly. This keeps project setup minimal: one config file per project, no Layout.astro boilerplate. Just add the theme to `tokens.css` and create pages that pass `config` to AppLayout.
+
+### Do I have to register the project in `projects.ts`?
+
+No. `src/config/projects.ts` auto-discovers every `src/projects/**/config.ts` at build time via `import.meta.glob`. As long as your file exports both `config` and `meta`, the project shows up automatically in `projectGroups` and on the landing page.
+
+### What happens if I forget to add `meta` to a project config?
+
+The auto-registry logs a console warning naming the file and skips it. The dev server keeps running, but the project won't appear in `projectGroups`. The validator will not produce a separate warning for this (it's caught by the registry).
+
+### How do I know my config is valid?
+
+Run `pnpm dev` or `pnpm build`. The validator prints `[validate-projects] all configs OK` on success, or a list of warnings for drifting hrefs, missing pages, and themes without tokens. To turn warnings into a hard build failure, pass `validateProjects({ failOnError: true })` in `astro.config.mjs`.
 
 ### Can two projects share the same theme?
 
@@ -642,8 +839,8 @@ Two options:
 
 ```astro
 ---
-import AppLayout from "../../layouts/AppLayout.astro";
-import { config } from "../../projects/my-project/config";
+import AppLayout from "@/layouts/AppLayout.astro";
+import { config } from "@/projects/my-project/config";
 ---
 
 <AppLayout config={{ ...config, template: "fullwidth" }} title="Special Page">

@@ -1,9 +1,18 @@
-import type { ProjectConfig } from "../../config/types";
+import type { ProjectConfig, ProjectMeta } from "@/config/types";
+
+export const meta: ProjectMeta = {
+  id: "ma-portal",
+  group: "education",
+  description:
+    "Multi-branch administration portal with v5 sidebar, dropdowns, and notifications.",
+  tags: ["Dashboard", "v5 Sidebar"],
+};
 
 export const config: ProjectConfig = {
   name: "MA Portal",
-  basePath: "/ma-portal",
+  basePath: "/projects/ma-portal",
   theme: "ma-portal",
+  v5Theme: "blue",
 
   template: "dashboard",
   branding: {
@@ -11,12 +20,12 @@ export const config: ProjectConfig = {
     logoLabel: "MA Portal",
   },
   navItems: [
-    { label: "Dashboard", href: "/ma-portal/" },
-    { label: "Notifications", href: "/ma-portal/notifications", badgeCount: 3 },
-    { label: "Settings", href: "/ma-portal/settings" },
-    { label: "Profile", href: "/ma-portal/profile" },
-    { label: "Help", href: "/ma-portal/help" },
-    { label: "Logout", href: "/ma-portal/logout" },
+    { label: "Dashboard", href: "/projects/ma-portal/" },
+    { label: "Notifications", href: "/projects/ma-portal/notifications", badgeCount: 3 },
+    { label: "Settings", href: "/projects/ma-portal/settings" },
+    { label: "Profile", href: "/projects/ma-portal/profile" },
+    { label: "Help", href: "/projects/ma-portal/help" },
+    { label: "Logout", href: "/projects/ma-portal/logout" },
   ],
   navbarTitle: "Dashboard",
   notificationCount: 5,
@@ -24,7 +33,7 @@ export const config: ProjectConfig = {
     name: "James Thompson",
     designation: "Super Administrator",
   },
-  profileDropdownActions: [{ label: "Logout", href: "/ma-portal/logout" }],
+  profileDropdownActions: [{ label: "Logout", href: "/projects/ma-portal/logout" }],
   sidebarType: "v5",
   navbarType: "v5",
   v5NavbarProps: {},
@@ -34,7 +43,7 @@ export const config: ProjectConfig = {
         children: [
           {
             title: "Dashboard",
-            url: "/ma-portal/",
+            url: "/projects/ma-portal/",
             isActive: true,
           },
           {
@@ -109,8 +118,7 @@ export const config: ProjectConfig = {
       dropdownPlaceholder: "All Branches",
       hasDropdown: true,
       headerClassName: "text-white",
-      image: "/rethink.png",
-      onDropdownChange: function tG() {},
+      image: "/projects/rethink.png",
       title: "Rethink Enterprise",
       variant: "stacked",
     },

@@ -1,0 +1,29 @@
+/*
+ * Assemblies group tokens — shared brand for all Gov Projects / Assemblies portals.
+ *
+ * Import directly:  @projects/styles/assemblies.css
+ * Or use a specific project (e.g. inspector-portal) which inherits from here.
+ *
+ * Only override what differs from base.css.
+ */
+[data-project-theme="assemblies"] {
+  /* ── Sidebar ── */
+  --sidebar-bg: #1a472a;
+  --sidebar-active-bg: #0d2915;
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.12);
+
+  /* ── Navbar ── */
+  --navbar-dropdown-header-bg: #ecfdf5;
+  --navbar-dropdown-item-hover-bg: #f0fdf4;
+
+  /* ── Brand ── */
+  --primary: #1a472a;
+  --deep-primary: #0d2915;
+  --primary-light: #2d6b42;
+  --accent: #10b981;
+  --secondary: #2d6b42;
+
+  /* ── Content ── */
+  --content-bg: #f0fdf4;
+  --content-text: #14532d;
+}

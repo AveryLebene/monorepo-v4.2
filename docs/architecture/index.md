@@ -8,7 +8,7 @@ This is a frontend Astro application organized as a layered system:
 - **Layouts** under `src/layouts/` provide the HTML shell (`BaseLayout.astro`) and the project-aware composition (`AppLayout.astro`).
 - **Templates** under `src/templates/` are React components that define page chrome (dashboard vs full-width).
 - **Components** under `src/components/` are shared, project-agnostic building blocks themed via CSS variables.
-- **Theme tokens** under `src/styles/themes/tokens.css` define per-project CSS custom properties activated by `data-theme-astro`.
+- **Theme tokens** from `@projects/styles` define per-project CSS custom properties activated by `data-theme`.
 
 _Source: `README.md` (“Architecture Overview”, “Project Structure”), `src/layouts/AppLayout.astro`, `src/layouts/BaseLayout.astro`, `src/styles/themes/tokens.css`_
 
@@ -28,7 +28,7 @@ _Source: `src/layouts/AppLayout.astro`_
 
 ### Base HTML shell (`src/layouts/BaseLayout.astro`)
 
-`BaseLayout` imports global styles, sets `data-theme-astro` (and optionally `data-theme`), and applies font CSS variables. It does not render navigation chrome directly.
+`BaseLayout` imports global styles, sets `data-theme` (and optionally `data-v5-theme` for @hubtel/react-ui v5), and applies font CSS variables. It does not render navigation chrome directly.
 
 _Source: `src/layouts/BaseLayout.astro`, `src/styles/global.css`_
 
@@ -47,7 +47,7 @@ _Source: `src/config/types.ts`, `src/projects/ma-portal/config.ts`_
 
 ### Theming (`src/styles/themes/tokens.css`)
 
-Themes are implemented as CSS custom properties. Each project theme corresponds to a `[data-theme-astro="<theme>"]` selector; components use variables rather than hard-coded colors.
+Themes are implemented as CSS custom properties. Each project theme corresponds to a `[data-theme="<theme>"]` selector in `@projects/styles`; components use variables rather than hard-coded colors.
 
 _Source: `src/styles/themes/tokens.css`, `README.md`_
 

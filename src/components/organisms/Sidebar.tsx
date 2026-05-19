@@ -1,11 +1,11 @@
 import React from "react";
-import BrandLogo from "../atoms/BrandLogo";
+import BrandLogo from "@/components/atoms/BrandLogo";
 import type {
   FooterNavItem,
   NavItem,
   ProjectBranding,
-} from "../../config/types";
-import { getNavWithActive } from "../../config/utils";
+} from "@/config/types";
+import { getNavWithActive } from "@/config/utils";
 
 function isProjectBranding(b: unknown): b is ProjectBranding {
   return typeof b === "object" && b !== null && "logo" in b;

@@ -1,6 +1,6 @@
 ---
-import AppLayout from "../../../layouts/AppLayout.astro";
-import { config } from "../../../projects/lenders-portal/config";
+import AppLayout from "@/layouts/AppLayout.astro";
+import { config } from "@/projects/lenders-portal/config";
 ---
 
 <AppLayout config={config} title="Dashboard" noPadding="true">
@@ -24,11 +24,11 @@ import { config } from "../../../projects/lenders-portal/config";
               </div>
               <div class="text-xl sm:text-2xl font-bold tracking-tight truncate">GHS 130,000.00</div>
             </div>
-            <a href="/lendscore/lenders-portal/wallet-topup" class="inline-flex items-center justify-center bg-white text-(--primary) rounded-md px-4 sm:px-5 py-2 text-sm font-semibold hover:opacity-90 transition-opacity w-fit no-underline shrink-0">TOP UP</a>
+            <a href="/projects/lendscore/lenders-portal/wallet-topup" class="inline-flex items-center justify-center bg-white text-(--primary) rounded-md px-4 sm:px-5 py-2 text-sm font-semibold hover:opacity-90 transition-opacity w-fit no-underline shrink-0">TOP UP</a>
           </div>
           <div class="flex flex-wrap items-center justify-between gap-2">
             <div class="text-xs text-(--disable)">Current wallet amount available for requests</div>
-            <a href="/lendscore/lenders-portal/top-up-history" class="text-xs text-(--success) font-semibold no-underline flex items-center gap-1 hover:opacity-100 transition-opacity">
+            <a href="/projects/lendscore/lenders-portal/top-up-history" class="text-xs text-(--success) font-semibold no-underline flex items-center gap-1 hover:opacity-100 transition-opacity">
               Transaction History
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg>
             </a>
@@ -43,7 +43,7 @@ import { config } from "../../../projects/lenders-portal/config";
               <p class="text-sm text-(--secondary)">Count of Credit Reports Purchased</p>
             </div>
             <div class="text-xl sm:text-2xl font-bold text-gray-900">2,500</div>
-            <a href="/lendscore/lenders-portal/credit-report" class="text-xs text-(--primary) no-underline flex items-center font-semibold justify-end gap-1 mt-auto hover:opacity-80 transition-opacity">View All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg></a>
+            <a href="/projects/lendscore/lenders-portal/credit-report" class="text-xs text-(--primary) no-underline flex items-center font-semibold justify-end gap-1 mt-auto hover:opacity-80 transition-opacity">View All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg></a>
           </div>
           <div class="rounded-lg p-4 sm:p-5 flex flex-col gap-2 bg-(--primary-light) border border-(--primary-light) shrink-0">
             <div class="flex items-center gap-2 mb-1">
@@ -51,7 +51,7 @@ import { config } from "../../../projects/lenders-portal/config";
               <p class="text-sm text-(--secondary)">Count of Borrowers Reported</p>
             </div>
             <div class="text-xl sm:text-2xl font-bold text-gray-900">2,500</div>
-            <a href="/lendscore/lenders-portal/report-borrower" class="text-xs text-(--primary) no-underline flex items-center font-semibold justify-end gap-1 mt-auto hover:opacity-80 transition-opacity">View All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg></a>
+            <a href="/projects/lendscore/lenders-portal/report-borrower" class="text-xs text-(--primary) no-underline flex items-center font-semibold justify-end gap-1 mt-auto hover:opacity-80 transition-opacity">View All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg></a>
           </div>
           <div class="rounded-lg p-4 sm:p-5 flex flex-col gap-2 bg-(--primary-light) border border-(--primary-light) shrink-0">
             <div class="flex items-center gap-2 mb-1">
@@ -59,7 +59,7 @@ import { config } from "../../../projects/lenders-portal/config";
               <p class="text-sm text-(--secondary)">Count of Non-Loan Borrowings</p>
             </div>
             <div class="text-xl sm:text-2xl font-bold text-gray-900">2,500</div>
-            <a href="/lendscore/lenders-portal/credit-report" class="text-xs text-(--primary) no-underline flex items-center font-semibold justify-end gap-1 mt-auto hover:opacity-80 transition-opacity">View All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg></a>
+            <a href="/projects/lendscore/lenders-portal/credit-report" class="text-xs text-(--primary) no-underline flex items-center font-semibold justify-end gap-1 mt-auto hover:opacity-80 transition-opacity">View All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg></a>
           </div>
         </div>
 
@@ -73,7 +73,7 @@ import { config } from "../../../projects/lenders-portal/config";
                 <p class="text-sm text-(--secondary)">Count of Bank / Non-Bank Loans Uploaded</p>
               </div>
               <div class="text-xl sm:text-2xl font-bold text-gray-900">2,500</div>
-              <a href="/lendscore/lenders-portal/bank-uploaded" class="text-xs text-(--primary) no-underline flex items-center font-semibold justify-end gap-1 mt-auto hover:opacity-80 transition-opacity">View All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg></a>
+              <a href="/projects/lendscore/lenders-portal/bank-uploaded" class="text-xs text-(--primary) no-underline flex items-center font-semibold justify-end gap-1 mt-auto hover:opacity-80 transition-opacity">View All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14" /><path d="M12 5l7 7-7 7" /></svg></a>
             </div>
           </div>
         </div>
@@ -135,14 +135,14 @@ import { config } from "../../../projects/lenders-portal/config";
     <section data-dashboard-view="live-activity" class="hidden" aria-label="Live activity">
       <div class="flex flex-col gap-4 py-4 sm:py-6">
       <div class="flex justify-end">
-        <a href="/lendscore/lenders-portal/find-report" class="inline-flex items-center justify-center bg-(--primary) text-white rounded-md px-4 py-2.5 text-sm font-semibold no-underline hover:opacity-90">Request New Report</a>
+        <a href="/projects/lendscore/lenders-portal/find-report" class="inline-flex items-center justify-center bg-(--primary) text-white rounded-md px-4 py-2.5 text-sm font-semibold no-underline hover:opacity-90">Request New Report</a>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         <div class="rounded-lg p-4 bg-(--primary-light) border border-gray-200">
           <p class="text-xs font-semibold text-(--secondary) mb-1">GHS</p>
           <p class="text-xl font-bold text-gray-900">120,000.00</p>
           <p class="text-xs text-(--secondary) mb-2">Total Balance</p>
-          <a href="/lendscore/lenders-portal/wallet-topup" class="text-xs font-semibold text-(--primary) no-underline">Top Up</a>
+          <a href="/projects/lendscore/lenders-portal/wallet-topup" class="text-xs font-semibold text-(--primary) no-underline">Top Up</a>
         </div>
         <div class="rounded-lg p-4 bg-(--primary-light) border border-gray-200">
           <p class="text-xs font-semibold text-(--secondary) mb-1">Count</p>

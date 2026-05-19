@@ -1,0 +1,40 @@
+/*
+ * @projects/styles — global stylesheet.
+ *
+ * One import gets you everything:
+ *   import '@projects/styles/global.css'
+ *
+ * Includes: reset, base tokens, group tokens, all theme overrides,
+ * font rules.
+ *
+ * If you only need one theme's tokens without the extras,
+ * import the individual file instead:
+ *   import '@projects/styles/lenders-portal.css'
+ */
+
+/* Reset */
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-width: 320px;
+}
+
+/* Base + groups + themes */
+@import "./base.css";
+@import "./groups/lendscore.css";
+@import "./groups/assemblies.css";
+@import "./themes/ma-portal.css";
+@import "./themes/assemblies.css";
+@import "./themes/inspector-portal.css";
+@import "./themes/customer-portal.css";
+@import "./themes/lenders-portal.css";
+
+/* Font defaults */
+body {
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}

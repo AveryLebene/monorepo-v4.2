@@ -3,10 +3,10 @@
  * AppLayout — single layout for all projects.
  * Uses BaseLayout + the template chosen by config.template (dashboard or fullwidth).
  */
-import BaseLayout from "./BaseLayout.astro";
-import DashboardTemplate from "../templates/DashboardTemplate.tsx";
-import FullWidthTemplate from "../templates/FullWidthTemplate.tsx";
-import type { ProjectConfig } from "../config/types";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import DashboardTemplate from "@/templates/DashboardTemplate.tsx";
+import FullWidthTemplate from "@/templates/FullWidthTemplate.tsx";
+import type { ProjectConfig } from "@/config/types";
 
 interface Props {
   config: ProjectConfig;
@@ -34,7 +34,7 @@ const pathname = Astro.url.pathname;
         title={title}
         showNavArrows={showNavArrows}
         noPadding={noPadding}
-        client:load
+        client:only="react"
       >
         <slot />
       </DashboardTemplate>

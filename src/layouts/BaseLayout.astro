@@ -1,12 +1,17 @@
 ---
 /**
  * BaseLayout — the pure HTML shell.
- * Handles <head>, global styles, and the data-theme attribute.
+ * Handles <head>, global styles, and theme attributes.
+ *
+ * Two-layer theming on <html>:
+ *   data-project-theme  — project-level tokens (sidebar, navbar, brand) from @projects/styles
+ *   data-theme          — v5 component tokens from @hubtel/shared-styles (accent, bg, text, etc.)
+ *
  * Does NOT include any template (sidebar, navbar, etc.)
  * Compose this with a template-specific layout (DashboardLayout, FullWidthLayout, etc.)
  */
-import "../styles/global.css";
-import type { ProjectFonts } from "../config/types";
+import "@/styles/global.css";
+import type { ProjectFonts } from "@/config/types";
 
 interface Props {
   title?: string;
@@ -40,8 +45,8 @@ const fontStyle = fonts
 
 <html
   lang="en"
-  data-theme-astro={theme}
-  data-theme={v5Theme}
+  data-project-theme={theme}
+  data-theme={v5Theme || undefined}
   style={fontStyle || undefined}
 >
   <head>

@@ -43,7 +43,7 @@ _Source: `README.md`, `src/layouts/AppLayout.astro`, `src/layouts/BaseLayout.ast
   _Source: `src/pages/` (routing), `package.json` (Astro dependency)_
 - React templates allow a consistent, reusable layout shell (sidebar/navbar) while keeping `.astro` pages thin.  
   _Source: `src/templates/DashboardTemplate.tsx`, `src/layouts/AppLayout.astro`_
-- CSS custom properties keyed by `data-theme-astro` support theming across projects without hardcoding colors inside components.  
+- CSS custom properties keyed by `data-theme` (via `@projects/styles`) support theming across projects without hardcoding colors inside components.  
   _Source: `src/styles/themes/tokens.css`, `README.md`_
 
 ## Alternatives Considered
@@ -96,7 +96,7 @@ _⚠️ INFERRED; see `docs/flows/add-new-project.md`_
 
 - `AppLayout` renders either `DashboardTemplate` or `FullWidthTemplate` based on `config.template`.  
   _Source: `src/layouts/AppLayout.astro`_
-- `BaseLayout` sets `data-theme-astro` on `<html>` and imports global styles.  
+- `BaseLayout` sets `data-theme` on `<html>` and imports global styles.  
   _Source: `src/layouts/BaseLayout.astro`, `src/styles/global.css`_
 
 ## References
